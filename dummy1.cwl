@@ -9,13 +9,11 @@ baseCommand: random.sh
 requirements:
   EnvVarRequirement:
     envDef:
-      outDir: unify
+      outDir: ./
       jobName: output
-inputs:
-  - id: input
-    type: string
-    doc: "Null"
+inputs: []
 outputs:
   - id: jobname
     type: File
-    outputsource: unify/output
+    outputBinding:
+      glob: output
