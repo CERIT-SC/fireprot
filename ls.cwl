@@ -7,10 +7,13 @@ hints:
     dockerPull: cerit/fireprot
 baseCommand: ls.sh
 requirements:
+  InitialWorkDirRequirement:
+    listing:
+      - entry: $(inputs.input)
+        entryname: path.txt
   EnvVarRequirement:
     envDef:
-      outDir: /
-      jobName: $(inputs.input.location)
+      outDir: ./
 inputs:
   - id: input
     type: File
