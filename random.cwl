@@ -5,7 +5,7 @@ class: CommandLineTool
 hints:
   DockerRequirement:
     dockerPull: cerit/fireprot
-baseCommand: ["/bin/bash", "-c", "sleep 100; random.sh"]
+baseCommand: ["/bin/bash", "-c", "sleep 5; random.sh"]
 requirements:
   EnvVarRequirement:
     envDef:
