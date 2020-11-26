@@ -6,15 +6,20 @@ class: Workflow
 requirements:
   ScatterFeatureRequirement: {}
 
-inputs: []
+inputs: 
+  input_array: string[]
 
 steps:
   random:
     run: random.cwl
-    scatter: jobname
-    in: []
-    out: 
-      jobname: output_array
+    scatter: jobname_in
+    in:
+      jobname_in: input_array
+    out: [jobname_out]
 
-outputs:
-  output_array: string[]
+outputs: 
+  - id: output
+    type: 
+      type: array
+      items: File
+    outputSource: random/jobname_out

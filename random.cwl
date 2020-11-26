@@ -5,15 +5,17 @@ class: CommandLineTool
 hints:
   DockerRequirement:
     dockerPull: cerit/fireprot
-baseCommand: random.sh
+baseCommand: ["/bin/bash", "-c", "sleep 100; random.sh"]
 requirements:
   EnvVarRequirement:
     envDef:
       outDir: ./
-      jobName: output
-inputs: []
+      jobName: output.$(inputs.jobname_in)
+inputs: 
+  - id: jobname_in
+    type: string
 outputs:
-  - id: jobname
+  - id: jobname_out
     type: File
     outputBinding:
-      glob: output
+      glob: output.$(inputs.jobname_in)
