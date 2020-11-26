@@ -6,9 +6,6 @@ class: Workflow
 requirements:
   ScatterFeatureRequirement: {}
 
-inputs: 
-  input_array: string[]
-
 steps:
   random:
     run: random.cwl
@@ -16,6 +13,9 @@ steps:
     in:
       jobname_in: input_array
     out: [jobname_out]
+
+inputs: 
+  input_array: string[]
 
 outputs: 
   - id: output
