@@ -18,9 +18,6 @@ outputs:
   combine_out:
     type: File
     outputSource: combine/combined_tree
-  gaps_out:
-    type: Directory
-    outputSource: gaps/nodes
   lazarus_out:
     type: File
     outputSource: lazarus/lazarus
@@ -124,9 +121,3 @@ steps:
     in:
       tree: lazarus/lazarus_tree
     out: [combined_tree]
-  gaps:
-    run: gaps.cwl
-    in:
-      msa_clustal: clustal/msa_clustal
-      combined_tree: combine/combined_tree
-    out: [nodes]
