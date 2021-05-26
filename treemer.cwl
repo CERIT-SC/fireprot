@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: sh
 hints:
   DockerRequirement:
-    dockerPull: cerit/treemer:v0.3
+    dockerPull: cerit.io/treemer:v0.3
   ResourceRequirement:
     coresMin: 8
     ramMin: 1024
@@ -21,3 +21,7 @@ outputs:
     type: File
     outputBinding:
       glob: pastaTree.tre_trimmed_tree_X_150
+  pasta_tree_trimmed_list:
+    type: File
+    outputBinding:
+      glob: pastaTree.tre_trimmed_list_X_150

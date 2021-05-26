@@ -6,7 +6,7 @@ baseCommand: sh
 
 hints:
   DockerRequirement:
-    dockerPull: cerit/mad:v0.7
+    dockerPull: cerit.io/mad:v0.7
   ResourceRequirement:
     coresMin: 4
     ramMin: 1024

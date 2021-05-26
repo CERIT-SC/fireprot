@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: ["iqtree", "-m", "TESTONLY", "-pre", "msa_clustal", "-s"]
 hints:
   DockerRequirement:
-    dockerPull: cerit/iqtree:v0.4
+    dockerPull: cerit.io/iqtree:v0.4
   ResourceRequirement:
     coresMin: 1
     ramMin: 1024

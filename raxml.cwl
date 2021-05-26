@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: sh
 hints:
   DockerRequirement:
-    dockerPull: cerit/raxml:v0.5
+    dockerPull: cerit.io/raxml:v0.5
   ResourceRequirement:
     coresMin: 12
     ramMin: 4096

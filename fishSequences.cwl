@@ -2,20 +2,24 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ["clustalo", "-o", "msa_clustal.fasta", "--threads=1", "-i"]
+baseCommand: ["/usr/local/bin/fishSequences.py"]
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/clustal:v0.2
+    dockerPull: cerit.io/fireprot-fishsequences:v0.2
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024
 inputs:
-  filtered_sequences:
+  pasta_trimmed:
     type: File
     inputBinding:
       position: 0
+  sequences:
+    type: File
+    inputBinding:
+      position: 1
 outputs:
-  msa_clustal:
+  filtered_sequences:
     type: File
     outputBinding:
-      glob: msa_clustal.fasta
+      glob: filteredSequences.fasta

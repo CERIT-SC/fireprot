@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: ["run_pasta.py", "-d", "Protein", "-j", "pastaTree",  "--num-cpus=8", "-o",  ".", "-i"]
 hints:
   DockerRequirement:
-    dockerPull: cerit/pasta:v0.3
+    dockerPull: cerit.io/pasta:v0.3
   ResourceRequirement:
     coresMin: 8
     ramMin: 1024

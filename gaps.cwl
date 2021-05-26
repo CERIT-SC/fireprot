@@ -2,20 +2,24 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: ["clustalo", "-o", "msa_clustal.fasta", "--threads=1", "-i"]
+baseCommand: ["/usr/local/bin/gapCorrection.py"]
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/clustal:v0.2
+    dockerPull: cerit.io/fireprot-gapcorrection:v0.3
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024
 inputs:
-  filtered_sequences:
+  msa_clustal:
     type: File
     inputBinding:
       position: 0
-outputs:
-  msa_clustal:
+  combined_tree:
     type: File
+    inputBinding:
+      position: 1
+outputs:
+  nodes:
+    type: Directory
     outputBinding:
-      glob: msa_clustal.fasta
+      glob: nodes

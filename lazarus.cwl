@@ -6,7 +6,7 @@ baseCommand: sh
 
 hints:
   DockerRequirement:
-    dockerPull: cerit/lazarus:v0.2
+    dockerPull: cerit.io/lazarus:v0.2
   ResourceRequirement:
     coresMin: 4
     ramMin: 1024
@@ -24,3 +24,7 @@ outputs:
     type: File
     outputBinding:
       glob: tree_summary.txt
+  lazarus_tree:
+    type: File
+    outputBinding:
+      glob: tree1/tree1.txt
