@@ -17,7 +17,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        raxml -f a -s $(inputs.msa_clustal.path) -n T1 -m "\$(python3 /usr/local/bin/best_tree_model.py $(inputs.iqtree.path))" -p 12345 -x 12345 -# 50 -T 12
+        raxml -C -f a -s $(inputs.msa_clustal.path) -n T1 -m "\$(python3 /usr/local/bin/best_tree_model.py $(inputs.iqtree.path))" -p 12345 -x 12345 -# 50 -T 12
 outputs:
   besttree:
     type: File
