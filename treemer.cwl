@@ -17,11 +17,13 @@ arguments:
     valueFrom: |
         ln -sf $(inputs.pasta_tree.path) pastaTree.tre && python /home/user/Treemmer/Treemmer.py -X 150 -c 8 pastaTree.tre
 outputs:
-  pasta_tree_trimmed:
-    type: File
-    outputBinding:
-      glob: pastaTree.tre_trimmed_tree_X_150
   pasta_tree_trimmed_list:
     type: File
     outputBinding:
       glob: pastaTree.tre_trimmed_list_X_150
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*

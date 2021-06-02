@@ -20,11 +20,13 @@ arguments:
     valueFrom: |
         python3 /usr/local/bin/fix_raxml.py $(inputs.besttree.path) && mad RAxML_bestTree_fixed.T1
 outputs:
-  besttree_fixed:
-    type: File
-    outputBinding:
-      glob: RAxML_bestTree_fixed.T1
   besttree_rooted:
     type: File
     outputBinding:
       glob: RAxML_bestTree_fixed.T1.rooted
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*

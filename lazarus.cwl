@@ -28,3 +28,19 @@ outputs:
     type: File
     outputBinding:
       glob: tree1/tree1.txt
+  nodes:
+    type: File[]
+    outputBinding:
+      glob: tree1/*.dat
+  lazarus_logs:
+    type: File[]
+    outputBinding:
+      glob: lazarus_*
+  reformatted:
+    type: File
+    outputBinding:
+      glob: reformatted*
+  pamlWorkspace:
+    type: File[]
+    outputBinding:
+      glob: tree1/pamlWorkspace/*

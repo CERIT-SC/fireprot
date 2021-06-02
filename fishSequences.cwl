@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: ["/usr/local/bin/fishSequences.py"]
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot-fishsequences:v0.2
+    dockerPull: cerit.io/fireprot-fishsequences:v0.3
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024

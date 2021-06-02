@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: ["/usr/local/bin/gapCorrection.py"]
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot-gapcorrection:v0.4
+    dockerPull: cerit.io/fireprot-gapcorrection:v0.7
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024
@@ -18,8 +18,12 @@ inputs:
     type: File
     inputBinding:
       position: 1
+  nodes:
+    type: File[]
+    inputBinding:
+      position: 2
 outputs:
   nodes:
-    type: Directory
+    type: File[]
     outputBinding:
-      glob: *
+      glob: nodes/*.dat

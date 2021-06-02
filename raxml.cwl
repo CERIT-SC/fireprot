@@ -23,3 +23,9 @@ outputs:
     type: File
     outputBinding:
       glob: RAxML_bestTree.T1
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*

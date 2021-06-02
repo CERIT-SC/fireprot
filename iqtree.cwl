@@ -19,3 +19,9 @@ outputs:
     type: File
     outputBinding:
       glob: msa_clustal.iqtree
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*

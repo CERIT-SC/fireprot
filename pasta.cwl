@@ -19,3 +19,9 @@ outputs:
     type: File
     outputBinding:
       glob: pastaTree.tre
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*
