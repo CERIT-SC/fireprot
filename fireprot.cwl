@@ -146,9 +146,10 @@ steps:
   gaps:
     run: gaps.cwl
     in:
+      nodes: lazarus/nodes
       msa_clustal: clustal/msa_clustal
       combined_tree: combine/combined_tree
-    out: [nodes]
+    out: [out_nodes]
   parseancestrals:
     run: ancestrals.cwl
     in:
