@@ -72,7 +72,7 @@ outputs:
     outputSource: combine/combined_tree
   gaps_out_nodes:
     type: File[]
-    outputSource: gaps/nodes
+    outputSource: gaps/out_nodes
   ancestrals_out_nodes:
     type: File[]
     outputSource: parseancestrals/ancestrals
@@ -152,6 +152,6 @@ steps:
   parseancestrals:
     run: ancestrals.cwl
     in:
-      nodes: gaps/nodes
+      nodes: gaps/out_nodes
     out:
       [ancestrals]

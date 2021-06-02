@@ -23,7 +23,7 @@ inputs:
     inputBinding:
       position: 2
 outputs:
-  nodes:
+  out_nodes:
     type: File[]
     outputBinding:
       glob: nodes/*.dat
