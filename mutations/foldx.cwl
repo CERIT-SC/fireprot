@@ -17,9 +17,13 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        mkdir /tmp/calc && ln -sf $(inputs.pdb.path) /tmp/calc/input.pdb && foldx --command=RepairPDB --pdb-dir=/tmp/calc/ --pdb=input.pdb --rotabaseLocation=$(inputs.rotobase.path) --output-dir=/tmp/calc
+        mkdir /tmp/calc && ln -sf $(inputs.pdb.path) /tmp/calc/input.pdb && foldx --command=RepairPDB --pdb-dir=/tmp/calc/ --pdb=input.pdb --rotabaseLocation=$(inputs.rotobase.path) --output-dir=.
 outputs:
   input_repair:
     type: File
     outputBinding:
-      glob: /tmp/calc/input_Repair.pdb
+      glob: input_Repair.pdb
+  input_repair_fxout:
+    type: File
+    outputBinding:
+      glob: input_Repair.fxout

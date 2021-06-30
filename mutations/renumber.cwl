@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: sh
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/rossetta:latest
+    dockerPull: cerit.io/rosetta:latest
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024
