@@ -12,6 +12,30 @@ inputs:
   mutation_dir:
     type: Directory
 outputs:
+  foldx_repair:
+    type: File
+    outputSource: foldx/input_repair
+  foldx_repair_fxout:
+    type: File
+    outputSource: foldx/input_repair_fxout
+  renumber_out:
+    type: File
+    outputSource: renumber/input_renumbered
+  minimize_rosetta:
+    type: File
+    outputSource: minimize/rosetta_out
+  minimize_renumbered:
+    type: File
+    outputSource: minimize/input_renumbered_out
+  filter_out:
+    type: File
+    outputSource: filter/min_cst
+  mutation_I:
+    type: File
+    outputSource: mutation/iterationI
+  mutation_II:
+    type: File
+    outputSource: mutation/iterationII
 
 steps:
   foldx:
