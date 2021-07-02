@@ -9,8 +9,8 @@ inputs:
     type: File
   weights:
     type: File
-  mutation_dir:
-    type: Directory
+  mutation_dir_tar:
+    type: File
 outputs:
   foldx_repair:
     type: File
@@ -63,7 +63,7 @@ steps:
   mutation:
     run: mutation.cwl
     in:
-      input_dir: mutation_dir
+      input_dir_tar: mutation_dir_tar
       renumbered_pdb: renumber/input_renumbered
       min_cst: filter/min_cst
       weights: weights

@@ -10,8 +10,8 @@ hints:
     coresMax: 4
     ramMin: 2048
 inputs:
-  input_dir:
-    type: Directory
+  input_dir_tar:
+    type: File
   renumbered_pdb:
     type: File
   min_cst:
@@ -21,7 +21,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        python3 /usr/local/bin/mutate $(inputs.input_dir.path) $(inputs.renumbered_pdb.path) $(inputs.min_cst.path) $(inputs.weights.path) && tar czvf outputI.tar.gz iteration_I && tar czvf outputII.tar.gz iteration_II
+        mkdir input_mut ; cd input_mut ; tar xf $(inputs.input_dir_tar.path) ; cd .. ; python3 /usr/local/bin/mutate input_mut $(inputs.renumbered_pdb.path) $(inputs.min_cst.path) $(inputs.weights.path) && tar czf outputI.tar.gz iteration_I && tar czf outputII.tar.gz iteration_II
 outputs:
   iterationI:
     type: File
