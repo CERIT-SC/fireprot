@@ -21,9 +21,9 @@ outputs:
   renumber_out:
     type: File
     outputSource: renumber/input_renumbered
-  minimize_rosetta:
+  minimize_rossetta:
     type: File
-    outputSource: minimize/rosetta_out
+    outputSource: minimize/rossetta_out
   minimize_renumbered:
     type: File
     outputSource: minimize/input_renumbered_out
@@ -54,11 +54,11 @@ steps:
     in:
       input_renumbered: renumber/input_renumbered
       weights: weights
-    out: [rosetta_out, input_renumbered_out]
+    out: [rossetta_out, input_renumbered_out]
   filter:
     run: filter.cwl
     in:
-      rosetta_out: minimize/rosetta_out
+      rossetta_out: minimize/rossetta_out
     out: [min_cst]
   mutation:
     run: mutation.cwl

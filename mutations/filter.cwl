@@ -10,12 +10,12 @@ hints:
     coresMax: 1
     ramMin: 1024
 inputs:
-  rosetta_out:
+  rossetta_out:
     type: File
 arguments:
   - prefix: -c
     valueFrom: |
-        grep c-alpha $(inputs.rosetta_out.path) | awk '{print \"AtomPair CA \"$7\" CA \"$9\" HARMONIC \"$11\" \"$14}' > min.cst
+        grep c-alpha $(inputs.rossetta_out.path) | awk '{print \"AtomPair CA \"$7\" CA \"$9\" HARMONIC \"$11\" \"$14}' > min.cst
 outputs:
   min_cst:
     type: File
