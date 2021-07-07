@@ -31,3 +31,9 @@ outputs:
     type: File
     outputBinding:
       glob: outputII.tar.gz
+  everything:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*
