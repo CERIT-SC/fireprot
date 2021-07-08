@@ -21,7 +21,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        mkdir input_mut ; cd input_mut ; tar xf $(inputs.input_dir_tar.path) ; cd .. ; python3 /usr/local/bin/mutate input_mut $(inputs.renumbered_pdb.path) $(inputs.min_cst.path) $(inputs.weights.path) ; if [ -e iteration_I ] ; then tar czf outputI.tar.gz iteration_I && tar czf outputII.tar.gz iteration_II ; fi
+        mkdir input_mut ; cd input_mut ; tar xf $(inputs.input_dir_tar.path) ; if [ $(find . -type d | wc -l) -gt 1 ] ; then mv */* . ; rmdir * ; fi ; cd .. ; python3 /usr/local/bin/mutate input_mut $(inputs.renumbered_pdb.path) $(inputs.min_cst.path) $(inputs.weights.path) && tar czf outputI.tar.gz iteration_I && tar czf outputII.tar.gz iteration_II
 outputs:
   iterationI:
     type: File
@@ -31,9 +31,3 @@ outputs:
     type: File
     outputBinding:
       glob: outputII.tar.gz
-  everything:
-    type:
-      type: array
-      items: [File, Directory]
-    outputBinding:
-      glob: ./*
