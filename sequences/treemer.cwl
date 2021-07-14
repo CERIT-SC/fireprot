@@ -21,9 +21,7 @@ outputs:
     type: File
     outputBinding:
       glob: pastaTree.tre_trimmed_list_X_150
-  everything:
-    type:
-      type: array
-      items: [File, Directory]
+  pasta_tree_trimmed_tree:
+    type: File
     outputBinding:
-      glob: ./*
+      glob: pastaTree.tre_trimmed_tree_X_150

@@ -1,39 +1,49 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: Workflow
+requirements:
+    MultipleInputFeatureRequirement: {}
+    InlineJavascriptRequirement: {}
+    SubworkflowFeatureRequirement: {}
 inputs:
   sequences:
-    type: File
+    type: File?
+  msa:
+    type: File?
+  is_clustered:
+    type: boolean
+    default: false
 outputs:
   stripped_sequences_out:
     type: File
-    outputSource: filterByLength/stripped_sequences
+    outputSource: clusteredSequences/stripped_sequences_out
   usearch_out_clusters:
     type: File
-    outputSource: usearch/clusters
+    outputSource: clusteredSequences/usearch_out_clusters
   usearch_out_nrfasta:
     type: File
-    outputSource: usearch/nrfasta
+    outputSource: clusteredSequences/usearch_out_nrfasta
   clustered_sequences_out:
     type: File
-    outputSource: createClustered/clustered_sequences
+    outputSource: clusteredSequences/clustered_sequences_out
   pasta_out:
     type:
       type: array
       items: [File, Directory]
-    outputSource: pasta/everything
-  treemer_out:
-    type:
-      type: array
-      items: [File, Directory]
-    outputSource: treemer/everything
+    outputSource: msaClustal/pasta_out
+  treemer_list:
+    type: File
+    outputSource: msaClustal/treemer_list
+  treemer_tree:
+    type: File
+    outputSource: msaClustal/treemer_tree
   fish_out:
     type: File
-    outputSource: fishSequences/filtered_sequences
+    outputSource: msaClustal/fish_out
   clustal_out:
     type: File
-    outputSource: clustal/msa_clustal
+    outputSource: msaClustal/clustal_out
   iqtree_out:
     type:
       type: array
@@ -79,52 +89,39 @@ outputs:
 
 
 steps:
-  filterByLength:
-    run: filterByLength.cwl
+  clusteredSequences:
+    run: clusteredSequence.cwl
+    when: $(!inputs.is_clustered && inputs.sequences != null)
     in:
       sequences: sequences
-    out: [stripped_sequences]
-  usearch:
-    run: usearch.cwl
+      is_clustered: is_clustered
+    out: [stripped_sequences_out, usearch_out_clusters, usearch_out_nrfasta, clustered_sequences_out]
+  msaClustal:
+    run: msaClustal.cwl
+    when: $(inputs.msa === null)
     in:
-      strippedSequences: filterByLength/stripped_sequences
-    out: [clusters, nrfasta]
-  createClustered:
-    run: createClustered.cwl
-    in:
-      clusters: usearch/clusters
-      stripped_sequences: filterByLength/stripped_sequences
-    out: [clustered_sequences]
-  pasta:
-    run: pasta.cwl
-    in:
-      sequencesClustered: createClustered/clustered_sequences
-    out: [pasta_tree, everything]
-  treemer:
-    run: treemer.cwl
-    in:
-      pasta_tree: pasta/pasta_tree
-    out: [pasta_tree_trimmed_list, everything]
-  fishSequences:
-    run: fishSequences.cwl
-    in:
-      pasta_trimmed: treemer/pasta_tree_trimmed_list
+      msa: msa
+      sequencesClustered:
+        id: sequencesClustered
+        source: [clusteredSequences/clustered_sequences_out, sequences]
+        pickValue: first_non_null
       sequences: sequences
-    out: [filtered_sequences]
-  clustal:
-    run: clustal.cwl
-    in:
-      filtered_sequences: fishSequences/filtered_sequences
-    out: [msa_clustal]
+    out: [pasta_out, treemer_list, treemer_tree, fish_out, clustal_out]
   iqtree:
     run: iqtree.cwl
     in:
-      msa_clustal: clustal/msa_clustal
+      msa_clustal:
+        id: msa_clustal
+        source: [msaClustal/clustal_out, msa]
+        pickValue: the_only_non_null
     out: [iqtree, everything]
   raxml:
     run: raxml.cwl
     in:
-      msa_clustal: clustal/msa_clustal
+      msa_clustal:
+        id: msa_clustal
+        source: [msaClustal/clustal_out, msa]
+        pickValue: the_only_non_null
       iqtree: iqtree/iqtree
     out: [besttree, everything]
   mad:
@@ -135,7 +132,10 @@ steps:
   lazarus:
     run: lazarus.cwl
     in:
-      msa_clustal: clustal/msa_clustal
+      msa_clustal:
+        id: msa_clustal
+        source: [msaClustal/clustal_out, msa]
+        pickValue: the_only_non_null
       besttree_rooted: mad/besttree_rooted
     out: [lazarus, lazarus_tree, nodes, lazarus_logs, reformatted, pamlWorkspace]
   combine:
@@ -147,7 +147,10 @@ steps:
     run: gaps.cwl
     in:
       nodes: lazarus/nodes
-      msa_clustal: clustal/msa_clustal
+      msa_clustal:
+        id: msa_clustal
+        source: [msaClustal/clustal_out, msa]
+        pickValue: the_only_non_null
       combined_tree: combine/combined_tree
     out: [out_nodes]
   parseancestrals:
