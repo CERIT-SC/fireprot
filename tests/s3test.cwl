@@ -15,7 +15,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        time s3cmd sync $(inputs.bucket) outputbucket
+        cp /root/.s3cfg ${HOME}/.s3cfg && s3cmd sync $(inputs.bucket) outputbucket && ls outputbucket
 outputs:
   standard:
     type: stdout
