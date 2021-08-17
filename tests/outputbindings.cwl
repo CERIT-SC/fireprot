@@ -30,4 +30,4 @@ outputs:
       type: array
       items: [File, Directory]
     outputBinding:
-      glob: ./*
+      glob: ./*.xml
