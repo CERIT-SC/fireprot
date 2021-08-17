@@ -31,6 +31,8 @@ outputs:
   standard_err:
     type: stderr
   blast_xmls:
-    type: File[]
+    type:
+      type: array
+      items: [File, Directory]
     outputBinding:
-      glob: blast_*.xml
+      glob: ./*.xml
