@@ -26,4 +26,4 @@ outputs:
   blast_xmls:
     type: File[]
     outputBinding:
-      glob: blast_*.xml
+      glob: ./blast_*.xml
