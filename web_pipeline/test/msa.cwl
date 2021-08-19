@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.02
+    dockerPull: cerit.io/fireweb:v0.03
 
 inputs:
   old_out:
@@ -24,6 +24,12 @@ outputs:
       items: [File, Directory]
     outputBinding:
       glob: ./*.fasta
+  msa_factories:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*.factory
   evalue:
     type: string
     outputBinding:
