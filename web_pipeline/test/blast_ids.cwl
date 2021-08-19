@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.08
+    dockerPull: cerit.io/fireweb:v0.09
 
 inputs:
   msa_factories:
