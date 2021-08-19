@@ -6,7 +6,7 @@ baseCommand: /usr/local/bin/web_scripts/mapindexes.py
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.04
+    dockerPull: cerit.io/fireweb:v0.05
 
 inputs:
   pdb:
