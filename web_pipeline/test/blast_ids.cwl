@@ -21,8 +21,12 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.blast_xmls.map(function(query){return query.path}).join(" ")) ; do
-      ID=`echo "\$f" | sed "s/.*blast_//" | sed "s/.xml\$//"` ;
-      /usr/local/bin/web_scripts/blastloader.py "$f" "msa_\${ID}.factory" ; done
+        ID=`echo "\$f" | sed "s/.*blast_//" | sed "s/.xml\$//"` ;
+        MSASTR="msa_\${ID}.factory"; MSAFILE="";
+        for g in $(inputs.msa_factories.map(function(query){return query.path}).join(" ")) ; do
+          if [ ! -z \$(echo "\$g" | grep "\$MSASTR" ] ; then MSAFILE="\$g" ; fi
+        done
+        /usr/local/bin/web_scripts/blastloader.py "\$f" "\$MSAFILE" ; done
 outputs:
   blast_ids:
     type:
