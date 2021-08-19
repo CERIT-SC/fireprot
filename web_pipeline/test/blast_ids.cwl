@@ -24,7 +24,7 @@ arguments:
         ID=`echo "\$f" | sed "s/.*blast_//" | sed "s/.xml\$//"` ;
         MSASTR="msa_\${ID}.factory"; MSAFILE="";
         for g in $(inputs.msa_factories.map(function(query){return query.path}).join(" ")) ; do
-          if [ ! -z \$(echo "\$g" | grep "\$MSASTR" ] ; then MSAFILE="\$g" ; fi
+          if [ ! -z \$(echo "\$g" | grep "\$MSASTR") ] ; then MSAFILE="\$g" ; fi
         done
         /usr/local/bin/web_scripts/blastloader.py "\$f" "\$MSAFILE" ; done
 outputs:
