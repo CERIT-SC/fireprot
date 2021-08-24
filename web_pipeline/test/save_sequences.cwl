@@ -26,8 +26,7 @@ arguments:
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
-        /usr/local/bin/web_scripts/savesequences.py "\$f" "\$SEQFILE" ; done ;
-      rm sequences*out
+        /usr/local/bin/web_scripts/savesequences.py "\$f" "\$SEQFILE" ; done
 outputs:
   blast_seqs:
     type:
