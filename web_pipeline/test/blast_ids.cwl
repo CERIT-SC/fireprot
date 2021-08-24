@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.09
+    dockerPull: cerit.io/fireweb:v0.10
 
 inputs:
   msa_factories:
@@ -34,3 +34,9 @@ outputs:
       items: [File, Directory]
     outputBinding:
       glob: ./*.txt
+  sequences:
+    type:
+      type: array
+      items: [File, Directory]
+    outputBinding:
+      glob: ./*.out

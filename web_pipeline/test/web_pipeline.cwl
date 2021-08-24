@@ -111,9 +111,21 @@ steps:
     in:
       msa_factories: msa/msa_factories
       blast_xmls: blast/blast_xmls
-    out: [blast_ids]
+    out: [blast_ids, sequences]
   blast_sequences:
     run: blast_sequences.cwl
     in:
       blast_ids: blast_ids/blast_ids
     out: [blast_sequences]
+  blast_extract:
+    run: blast_extract.cwl
+    in:
+      blast_seqs: blast_sequences/blast_sequences
+      sequences: blast_ids/sequences
+    out: [full_seqs]
+  save_seqeunces:
+    run: save_sequences.cwl
+    in:
+      msa_factories: msa/msa_factories
+      sequences: blast_ids/sequences
+    out: [blast_seqs]
