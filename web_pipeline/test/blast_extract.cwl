@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.10
+    dockerPull: cerit.io/fireweb:v0.11
 
 inputs:
   blast_seqs:

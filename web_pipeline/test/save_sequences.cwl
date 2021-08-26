@@ -9,13 +9,15 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.10
+    dockerPull: cerit.io/fireweb:v0.11
 
 inputs:
   msa_factories:
     type: File[]
   sequences:
     type: File[]
+  prefix:
+    type: string
 
 arguments:
   - prefix: -c
@@ -26,7 +28,7 @@ arguments:
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
-        /usr/local/bin/web_scripts/savesequences.py "\$f" "\$SEQFILE" ; done
+        /usr/local/bin/web_scripts/savesequences.py "\$f" "\$SEQFILE" "$(inputs.prefix)" ; done
 outputs:
   blast_seqs:
     type:

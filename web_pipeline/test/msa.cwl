@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireweb:v0.10
+    dockerPull: cerit.io/fireweb:v0.11
 
 inputs:
   old_out:
@@ -34,5 +34,23 @@ outputs:
     type: string
     outputBinding:
       glob: evalue.txt
+      loadContents: true
+      outputEval: $(self[0].contents)
+  minidentity:
+    type: double
+    outputBinding:
+      glob: minidentity.txt
+      loadContents: true
+      outputEval: $(self[0].contents)
+  minidentityhundredth:
+    type: double
+    outputBinding:
+      glob: minidentityhundredth.txt
+      loadContents: true
+      outputEval: $(self[0].contents)
+  maxidentity:
+    type: double
+    outputBinding:
+      glob: maxidentity.txt
       loadContents: true
       outputEval: $(self[0].contents)
