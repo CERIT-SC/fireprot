@@ -76,3 +76,12 @@ msa()
 with open("evalue.txt", "w") as evalue_file:
     evalue_file.write(readParams().evalue)
     evalue_file.close()
+with open("minidentity.txt", "w") as minidentity_file:
+    minidentity_file.write(readParams().minIdentity)
+    minidentity_file.close()
+with open("minidentityhundredth.txt", "w") as min100_file:
+    min100_file.write(readParams().minIdentity / 100.0)
+    min100_file.close()
+with open("maxidentity.txt", "w") as maxid_file:
+    maxid_file.write(readParams().maxIdentity)
+    maxid_file.close()
