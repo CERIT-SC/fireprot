@@ -23,8 +23,8 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.queries_fasta.map(function(query){return query.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*query_//" | sed "s/.fasta\$//"` ;
-        FULLSEQSTR="full_seqs_\${ID}.fasta"; FULLSEQFILE="";
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.fasta\$//"` ;
+        FULLSEQSTR="blast_sequence_\${ID}.fasta"; FULLSEQFILE="";
         for g in $(inputs.full_seqs.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FULLSEQSTR") ] ; then FULLSEQFILE="\$g" ; fi
         done
