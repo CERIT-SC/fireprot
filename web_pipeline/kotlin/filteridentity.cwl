@@ -23,7 +23,7 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.out\$//"` ;
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.obj\$//"` ;
         USTR="usearch1_\${ID}.out"; UFILE="";
         for g in $(inputs.usearch1s.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$USTR") ] ; then UFILE="\$g" ; fi

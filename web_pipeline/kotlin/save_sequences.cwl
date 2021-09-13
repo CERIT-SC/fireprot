@@ -24,7 +24,7 @@ arguments:
     valueFrom: |
       for f in $(inputs.factories.map(function(query){return query.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/.obj\$//"` ;
-        SEQSTR="sequences_load_blast_\${ID}.obj"; SEQFILE="";
+        SEQSTR="sequences_.*_\${ID}\...."; SEQFILE="";
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
