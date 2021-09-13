@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: /usr/bin/java -jar /opt/loschmidt/msa-1.3.1.0.jar
+baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
