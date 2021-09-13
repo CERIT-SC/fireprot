@@ -49,19 +49,19 @@ outputs:
     outputBinding:
       glob: minsize.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseInt(self[0].contents))
   maxsize:
     type: int
     outputBinding:
       glob: maxsize.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseInt(self[0].contents))
   minidentity:
     type: double
     outputBinding:
       glob: minid.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseFloat(self[0].contents))
   minidentityhundredth:
     type: double
     outputBinding:
@@ -73,10 +73,10 @@ outputs:
     outputBinding:
       glob: maxid.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseFloat(self[0].contents))
   clusteringthreshold:
     type: double
     outputBinding:
       glob: clustering.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseFloat(self[0].contents))
