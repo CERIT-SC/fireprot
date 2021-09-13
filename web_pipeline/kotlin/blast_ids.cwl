@@ -26,7 +26,7 @@ arguments:
         for g in $(inputs.msa_factories.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$MSASTR") ] ; then MSAFILE="\$g" ; fi
         done
-        /opt/loschmidt/loadBlast-1.3.1.0.jar "\$f" "\$MSAFILE" ; done
+        /usr/bin/java -jar /opt/loschmidt/loadBlast-1.3.1.0.jar "\$f" "\$MSAFILE" ; done
 outputs:
   blast_ids:
     type:
