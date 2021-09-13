@@ -24,7 +24,7 @@ arguments:
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/.fasta\$//"` ;
         /usr/bin/usearch -cluster_fast "\$f" -id $(inputs.clusteringthreshold) -uc "usearch2_\${ID}.out" ; done
 outputs:
-  userach2_outs:
+  usearch2_outs:
     type:
       type: array
       items: [File, Directory]

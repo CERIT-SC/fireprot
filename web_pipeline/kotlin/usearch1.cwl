@@ -30,7 +30,7 @@ arguments:
         done
         /usr/bin/usearch -search_global "\$f" -db "\$FULLSEQFILE" -id $(inputs.min_identity) --userout "usearch1_\${ID}.out" -userfields target+id -fulldp ; done
 outputs:
-  userach1_outs:
+  usearch1_outs:
     type:
       type: array
       items: [File, Directory]
