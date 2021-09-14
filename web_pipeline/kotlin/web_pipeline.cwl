@@ -240,7 +240,7 @@ steps:
     run: filterclustering.cwl
     in:
       filtered_seqs_objects: filteridentity/sequences
-      usearch2s: usearch1/usearch1_outs
+      usearch2s: usearch2/usearch2_outs
       factories: msa/msa_factories
     out: [sequences]
   save_sequences_clustering_filtered:
