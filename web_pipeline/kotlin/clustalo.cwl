@@ -18,9 +18,10 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-      for f in $(inputs.queries_fasta.map(function(query){return query.path}).join(" ")) ; do
+      for f in $(inputs.coverage_fasta.map(function(fasta){return fasta.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/.fasta\$//"` ;
-        /usr/local/bin/clustalo -i "\$f" -o "msa_\${ID}.out" --force ; done
+        /usr/local/bin/clustalo -i "\$f" -o "msa_\${ID}.out" --force ;
+      done
 outputs:
   clustalo_outs:
     type:

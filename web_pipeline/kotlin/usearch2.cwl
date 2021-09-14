@@ -20,9 +20,10 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-      for f in $(inputs.queries_fasta.map(function(query){return query.path}).join(" ")) ; do
+      for f in $(inputs.filtered_seqs.map(function(seq){return seq.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/.fasta\$//"` ;
-        /usr/bin/usearch -cluster_fast "\$f" -id $(inputs.clusteringthreshold) -uc "usearch2_\${ID}.out" ; done
+        /usr/bin/usearch -cluster_fast "\$f" -id $(inputs.clusteringthreshold) -uc "usearch2_\${ID}.out" ;
+      done
 outputs:
   usearch2_outs:
     type:
