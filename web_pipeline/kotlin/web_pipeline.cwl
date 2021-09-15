@@ -1,9 +1,8 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: Workflow
 requirements:
-    MultipleInputFeatureRequirement: {}
     InlineJavascriptRequirement: {}
     SubworkflowFeatureRequirement: {}
 inputs:
@@ -57,13 +56,13 @@ outputs:
     outputSource: msa/blast_xmls
   msa_blast_ids:
     type: File[]
-    outputSource: msa/blast_ids
+    outputSource: msa/blast_ids_ids
   msa_blast_id_sequences:
     type: File[]
     outputSource: msa/blast_id_sequences
   msa_blast_sequences:
     type: File[]
-    outputSource: msa/blast_sequences
+    outputSource: msa/blast_sequences_sequences
   msa_blast_full_sequences:
     type: File[]
     outputSource: msa/blast_full_sequences
@@ -73,27 +72,27 @@ outputs:
   msa_usearch1_objs:
     type: File[]
     outputSource: msa/usearch1_objs
-  msa_filteridentity_sequences:
+  msa_filter_identity_sequences:
     type: File[]
-    outputSource: msa/filteridentity_sequences
-  msa_filteridentity_sequences_saved:
+    outputSource: msa/filter_identity_sequences
+  msa_filter_identity_sequences_saved:
     type: File[]
-    outputSource: msa/filteridentity_sequences_saved
+    outputSource: msa/filter_identity_sequences_saved
   msa_usearch2_objs:
     type: File[]
     outputSource: msa/usearch2_objs
-  msa_filterclustering_sequences:
+  msa_filter_clustering_sequences:
     type: File[]
-    outputSource: msa/filterclustering_sequences
-  msa_filterclustering_sequences_saved:
+    outputSource: msa/filter_clustering_sequences
+  msa_filter_clustering_sequences_saved:
     type: File[]
-    outputSource: msa/filterclustering_sequences_saved
-  msa_filtercoverage_seqeunces:
+    outputSource: msa/filter_clustering_sequences_saved
+  msa_filter_coverage_seqeunces:
     type: File[]
-    outputSource: msa/filtercoverage_seqeunces
-  msa_filtercoverage_seqeunces_saved:
+    outputSource: msa/filter_coverage_seqeunces
+  msa_filter_coverage_seqeunces_saved:
     type: File[]
-    outputSource: msa/filtercoverage_seqeunces_saved
+    outputSource: msa/filter_coverage_seqeunces_saved
   msa_msa_objs:
     type: File[]
     outputSource: msa/msa_objs
@@ -116,4 +115,4 @@ steps:
       job_config: job_config
       old_obj: preparation/map_old
       new_obj: preparation/map_new
-    out: [msa_queries, msa_factories, msa_conf, blast_xmls, blast_ids, blast_id_sequences, blast_sequences, blast_full_sequences, blast_saved_sequences, usearch1_objs, filteridentity_sequences, filteridentity_sequences_saved, usearch2_objs, filterclustering_sequences, filterclustering_sequences_saved, filtercoverage_seqeunces, filtercoverage_seqeunces_saved, msa_objs, old_msa_obj, new_msa_obj]
+    out: [msa_queries, msa_factories, msa_conf, blast_xmls, blast_ids_ids, blast_id_sequences, blast_sequences_sequences, blast_full_sequences, blast_saved_sequences, usearch1_objs, filter_identity_sequences, filter_identity_sequences_saved, usearch2_objs, filter_clustering_sequences, filter_clustering_sequences_saved, filter_coverage_seqeunces, filter_coverage_seqeunces_saved, msa_objs, old_msa_obj, new_msa_obj]

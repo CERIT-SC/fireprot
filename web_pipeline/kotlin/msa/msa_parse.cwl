@@ -32,7 +32,7 @@ arguments:
         /usr/bin/java -jar /opt/loschmidt/msaParser-1.3.1.0.jar "\$MSAFILE" old_msa.obj "\$f";
       done
 outputs:
-  old_msa_obj
+  old_msa_obj:
     type: File
     outputBinding:
       glob: old_msa.obj

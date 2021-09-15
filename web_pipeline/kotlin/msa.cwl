@@ -1,9 +1,8 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.2
+cwlVersion: v1.1
 class: Workflow
 requirements:
-    MultipleInputFeatureRequirement: {}
     InlineJavascriptRequirement: {}
 inputs:
   job_config:
@@ -37,13 +36,13 @@ outputs:
   blast_xmls:
     type: File[]
     outputSource: blast/blast_xmls
-  blast_ids:
+  blast_ids_ids:
     type: File[]
     outputSource: blast_ids/blast_ids
   blast_id_sequences:
     type: File[]
     outputSource: blast_ids/sequences
-  blast_sequences:
+  blast_sequences_sequences:
     type: File[]
     outputSource: blast_sequences/blast_sequences
   blast_full_sequences:
@@ -55,25 +54,25 @@ outputs:
   usearch1_objs:
     type: File[]
     outputSource: usearch1/usearch1_outs
-  filteridentity_sequences:
+  filter_identity_sequences:
     type: File[]
-    outputSource: filteridentity/sequences
-  filteridentity_sequences_saved:
+    outputSource: filter_identity/sequences
+  filter_identity_sequences_saved:
     type: File[]
     outputSource: save_sequences_identity_filtered/seqs
   usearch2_objs:
     type: File[]
     outputSource: usearch2/usearch2_outs
-  filterclustering_sequences:
+  filter_clustering_sequences:
     type: File[]
-    outputSource: filterclustering/sequences
-  filterclustering_sequences_saved:
+    outputSource: filter_clustering/sequences
+  filter_clustering_sequences_saved:
     type: File[]
     outputSource: save_sequences_clustering_filtered/seqs
-  filtercoverage_seqeunces:
+  filter_coverage_seqeunces:
     type: File[]
-    outputSource: filtercoverage/sequences
-  filtercoverage_seqeunces_saved:
+    outputSource: filter_coverage/sequences
+  filter_coverage_seqeunces_saved:
     type: File[]
     outputSource: save_sequences_coverage_filtered/seqs
   msa_objs:
@@ -81,10 +80,10 @@ outputs:
     outputSource: clustalo/clustalo_outs
   old_msa_obj:
     type: File
-    outputSource: msaparse/old_msa_obj
+    outputSource: msa_parse/old_msa_obj
   new_msa_obj:
     type: File
-    outputSource: msasetminimized/new_msa_obj
+    outputSource: msa_set_minimized/new_msa_obj
 
 steps:
   msa:
@@ -134,7 +133,7 @@ steps:
   filter_identity:
     run: msa/filter_identity.cwl
     in:
-      sequences: blast_ids/sequences
+      sequences_in: blast_ids/sequences
       usearch1s: usearch1/usearch1_outs
       factories: msa/msa_factories
     out: [sequences]

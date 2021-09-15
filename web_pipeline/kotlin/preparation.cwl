@@ -1,9 +1,8 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.2
+cwlVersion: v1.1
 class: Workflow
 requirements:
-    MultipleInputFeatureRequirement: {}
     InlineJavascriptRequirement: {}
 inputs:
   pdb:
@@ -23,22 +22,22 @@ outputs:
     outputSource: renumber/input_renumbered
   minimize_rossetta:
     type: File
-    outputSource: rossetta_out
+    outputSource: minimize/rossetta_out
   minimize_renumbered:
     type: File
-    outputSource: input_renumbered_out
+    outputSource: minimize/input_renumbered_out
   filter_min_cst:
     type: File
-    outputSource: min_cst
+    outputSource: filter/min_cst
   map_indexes:
-    type:File
-    outputSource: indexes_obj
+    type: File
+    outputSource: map/indexes_obj
   map_old:
-    type:File
-    outputSource: old_obj
+    type: File
+    outputSource: map/old_obj
   map_new:
-    type:File
-    outputSource: new_obj
+    type: File
+    outputSource: map/new_obj
 
 steps:
   foldx:

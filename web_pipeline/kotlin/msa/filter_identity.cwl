@@ -12,7 +12,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 inputs:
-  sequences:
+  sequences_in:
     type: File[]
   usearch1s:
     type: File[]
