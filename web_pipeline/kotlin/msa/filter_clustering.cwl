@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.02
+    dockerPull: cerit.io/loschmidt:v0.03
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -23,7 +23,7 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.filtered_seqs_objects.map(function(seq){return seq.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.out\$//"` ;
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\..*\$//"` ;
         USTR="usearch2_\${ID}.out"; UFILE="";
         for g in $(inputs.usearch2s.map(function(usearch){return usearch.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$USTR") ] ; then UFILE="\$g" ; fi
@@ -37,8 +37,6 @@ arguments:
 
 outputs:
   sequences:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
-      glob: ./*.out
+      glob: ./*.obj

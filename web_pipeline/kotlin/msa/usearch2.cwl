@@ -26,8 +26,6 @@ arguments:
       done
 outputs:
   usearch2_outs:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
       glob: ./*.out

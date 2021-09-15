@@ -24,8 +24,6 @@ arguments:
       done
 outputs:
   clustalo_outs:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
       glob: ./*.out

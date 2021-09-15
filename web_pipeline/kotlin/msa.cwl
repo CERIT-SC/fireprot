@@ -91,7 +91,7 @@ steps:
     run: msa/msa.cwl
     in:
       job_config: job_config
-      old_out: old_obj
+      old_obj: old_obj
     out: [queries_fasta, msa_factories, msa_conf, evalue, minsize, maxsize, minidentity, minidentityhundredth, maxidentity, clusteringthreshold]
   blast:
     run: msa/blast.cwl
@@ -131,8 +131,8 @@ steps:
       full_seqs: blast_extract/full_seqs
       min_identity: msa/minidentityhundredth
     out: [usearch1_outs]
-  filteridentity:
-    run: msa/filteridentity.cwl
+  filter_identity:
+    run: msa/filter_identity.cwl
     in:
       sequences: blast_ids/sequences
       usearch1s: usearch1/usearch1_outs
@@ -142,7 +142,7 @@ steps:
     run: msa/save_sequences.cwl
     in:
       factories: msa/msa_factories
-      sequences: filteridentity/sequences
+      sequences: filter_identity/sequences
       prefix: sequences_identity_filter_prefix
     out: [seqs]
   usearch2:
@@ -151,10 +151,10 @@ steps:
       filtered_seqs: save_sequences_identity_filtered/seqs
       clusteringthreshold: msa/clusteringthreshold
     out: [usearch2_outs]
-  filterclustering:
-    run: msa/filterclustering.cwl
+  filter_clustering:
+    run: msa/filter_clustering.cwl
     in:
-      filtered_seqs_objects: filteridentity/sequences
+      filtered_seqs_objects: filter_identity/sequences
       usearch2s: usearch2/usearch2_outs
       factories: msa/msa_factories
     out: [sequences]
@@ -162,20 +162,20 @@ steps:
     run: msa/save_sequences.cwl
     in:
       factories: msa/msa_factories
-      sequences: filterclustering/sequences
+      sequences: filter_clustering/sequences
       prefix: sequences_clustering_filter_prefix
     out: [seqs]
-  filtercoverage:
-    run: msa/filtercoverage.cwl
+  filter_coverage:
+    run: msa/filter_coverage.cwl
     in:
-      filtered_seqs_objects: filterclustering/sequences
+      filtered_seqs_objects: filter_clustering/sequences
       factories: msa/msa_factories
     out: [sequences]
   save_sequences_coverage_filtered:
     run: msa/save_sequences.cwl
     in:
       factories: msa/msa_factories
-      sequences: filtercoverage/sequences
+      sequences: filter_coverage/sequences
       prefix: sequences_coverage_filter_prefix
     out: [seqs]
   clustalo:
@@ -183,16 +183,16 @@ steps:
     in:
       coverage_fasta: save_sequences_coverage_filtered/seqs
     out: [clustalo_outs]
-  msaparse:
-    run: msa/msaparse.cwl
+  msa_parse:
+    run: msa/msa_parse.cwl
     in:
       msa_objs: clustalo/clustalo_outs
       old_obj: old_obj
       factories: msa/msa_factories
     out: [old_msa_obj]
-  msasetminimized:
-    run: msa/msasetminimized.cwl
+  msa_set_minimized:
+    run: msa/msa_set_minimized.cwl
     in:
-      old_msa_obj: msaparse/old_msa_obj
+      old_msa_obj: msa_parse/old_msa_obj
       new_obj: new_obj
     out: [new_msa_obj]

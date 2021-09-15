@@ -32,13 +32,13 @@ outputs:
     outputSource: min_cst
   map_indexes:
     type:File
-    outputSource: indexes_out
+    outputSource: indexes_obj
   map_old:
     type:File
-    outputSource: old_out
+    outputSource: old_obj
   map_new:
     type:File
-    outputSource: new_out
+    outputSource: new_obj
 
 steps:
   foldx:
@@ -71,5 +71,5 @@ steps:
     in:
       pdb: pdb
       pdb_renumbered: minimize/input_renumbered_out
-    out: [indexes_out, old_out, new_out]
+    out: [indexes_obj, old_obj, new_obj]
 

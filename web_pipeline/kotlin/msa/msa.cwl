@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.02
+    dockerPull: cerit.io/loschmidt:v0.03
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -16,28 +16,24 @@ inputs:
     type: File
     inputBinding:
       position: 0
-  old_out:
+  old_obj:
     type: File
     inputBinding:
       position: 1
 
 outputs:
   queries_fasta:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
       glob: ./*.fasta
   msa_factories:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
       glob: ./*.obj
   msa_conf:
     type: File
     outputBinding:
-      glob: msa.obj.conf
+      glob: msa.conf.obj
   evalue:
     type: string
     outputBinding:

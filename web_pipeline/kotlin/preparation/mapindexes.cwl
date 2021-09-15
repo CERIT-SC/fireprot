@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/mapindexes-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.01
+    dockerPull: cerit.io/loschmidt:v0.03
 
 inputs:
   pdb:
@@ -19,15 +19,15 @@ inputs:
       position: 1
 
 outputs:
-  indexes_out:
+  indexes_obj:
     type: File
     outputBinding:
       glob: indexes.obj
-  old_out:
+  old_obj:
     type: File
     outputBinding:
       glob: old.pdb.obj
-  new_out:
+  new_obj:
     type: File
     outputBinding:
       glob: new.pdb.obj

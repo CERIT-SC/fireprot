@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.02
+    dockerPull: cerit.io/loschmidt:v0.03
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -21,7 +21,7 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.filtered_seqs_objects.map(function(seq){return seq.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.out\$//"` ;
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\..*\$//"` ;
         FACTORYSTR="factory_\${ID}.obj"; FACTORYFILE="";
         for g in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
@@ -31,8 +31,6 @@ arguments:
 
 outputs:
   sequences:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
-      glob: ./*.out
+      glob: ./*.obj

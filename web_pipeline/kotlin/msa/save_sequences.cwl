@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.02
+    dockerPull: cerit.io/loschmidt:v0.03
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -23,16 +23,15 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.factories.map(function(query){return query.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/.obj\$//"` ;
-        SEQSTR="sequences_.*_\${ID}\...."; SEQFILE="";
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\..*\$//"` ;
+        SEQSTR=".*_\${ID}\..*"; SEQFILE="";
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/saveSequences-1.3.1.0.jar "\$SEQFILE" "\$f" "$(inputs.prefix)" ; done
+        /usr/bin/java -jar /opt/loschmidt/saveSequences-1.3.1.0.jar "\$SEQFILE" "\$f" "$(inputs.prefix)" ;
+      done
 outputs:
   seqs:
-    type:
-      type: array
-      items: [File, Directory]
+    type: File[]
     outputBinding:
       glob: ./*.fasta
