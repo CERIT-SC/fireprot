@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.1
+cwlVersion: v1.0
 class: Workflow
 requirements:
     InlineJavascriptRequirement: {}
