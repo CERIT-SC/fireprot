@@ -1,82 +1,198 @@
 #!/usr/bin/env cwl-tes
 
-cwlVersion: v1.0
-class: CommandLineTool
-baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
-
-hints:
-  DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.02
-
+cwlVersion: v1.2
+class: Workflow
 requirements:
-  InlineJavascriptRequirement: {}
-
+    MultipleInputFeatureRequirement: {}
+    InlineJavascriptRequirement: {}
 inputs:
   job_config:
     type: File
-    inputBinding:
-      position: 0
-  old_out:
+  old_obj:
     type: File
-    inputBinding:
-      position: 1
-
+  new_obj:
+    type: File
+  sequences_prefix:
+    type: string
+    default: "blast_seqs"
+  sequences_identity_filter_prefix:
+    type: string
+    default: "identity_filter_seqs"
+  sequences_clustering_filter_prefix:
+    type: string
+    default: "clustering_filter_seqs"
+  sequences_coverage_filter_prefix:
+    type: string
+    default: "coverage_filter_seqs"
 outputs:
-  queries_fasta:
-    type:
-      type: array
-      items: [File, Directory]
-    outputBinding:
-      glob: ./*.fasta
+  msa_queries:
+    type: File[]
+    outputSource: msa/queries_fasta
   msa_factories:
-    type:
-      type: array
-      items: [File, Directory]
-    outputBinding:
-      glob: ./*.obj
+    type: File[]
+    outputSource: msa/msa_factories
   msa_conf:
     type: File
-    outputBinding:
-      glob: msa.obj.conf
-  evalue:
-    type: string
-    outputBinding:
-      glob: evalue.txt
-      loadContents: true
-      outputEval: $(self[0].contents)
-  minsize:
-    type: int
-    outputBinding:
-      glob: minsize.txt
-      loadContents: true
-      outputEval: $(parseInt(self[0].contents))
-  maxsize:
-    type: int
-    outputBinding:
-      glob: maxsize.txt
-      loadContents: true
-      outputEval: $(parseInt(self[0].contents))
-  minidentity:
-    type: double
-    outputBinding:
-      glob: minid.txt
-      loadContents: true
-      outputEval: $(parseFloat(self[0].contents))
-  minidentityhundredth:
-    type: double
-    outputBinding:
-      glob: minid.txt
-      loadContents: true
-      outputEval: $(parseFloat(self[0].contents)/100.0)
-  maxidentity:
-    type: double
-    outputBinding:
-      glob: maxid.txt
-      loadContents: true
-      outputEval: $(parseFloat(self[0].contents))
-  clusteringthreshold:
-    type: double
-    outputBinding:
-      glob: clustering.txt
-      loadContents: true
-      outputEval: $(parseFloat(self[0].contents))
+    outputSource: msa/msa_conf
+  blast_xmls:
+    type: File[]
+    outputSource: blast/blast_xmls
+  blast_ids:
+    type: File[]
+    outputSource: blast_ids/blast_ids
+  blast_id_sequences:
+    type: File[]
+    outputSource: blast_ids/sequences
+  blast_sequences:
+    type: File[]
+    outputSource: blast_sequences/blast_sequences
+  blast_full_sequences:
+    type: File[]
+    outputSource: blast_extract/full_seqs
+  blast_saved_sequences:
+    type: File[]
+    outputSource: save_sequences/seqs
+  usearch1_objs:
+    type: File[]
+    outputSource: usearch1/usearch1_outs
+  filteridentity_sequences:
+    type: File[]
+    outputSource: filteridentity/sequences
+  filteridentity_sequences_saved:
+    type: File[]
+    outputSource: save_sequences_identity_filtered/seqs
+  usearch2_objs:
+    type: File[]
+    outputSource: usearch2/usearch2_outs
+  filterclustering_sequences:
+    type: File[]
+    outputSource: filterclustering/sequences
+  filterclustering_sequences_saved:
+    type: File[]
+    outputSource: save_sequences_clustering_filtered/seqs
+  filtercoverage_seqeunces:
+    type: File[]
+    outputSource: filtercoverage/sequences
+  filtercoverage_seqeunces_saved:
+    type: File[]
+    outputSource: save_sequences_coverage_filtered/seqs
+  msa_objs:
+    type: File[]
+    outputSource: clustalo/clustalo_outs
+  old_msa_obj:
+    type: File
+    outputSource: msaparse/old_msa_obj
+  new_msa_obj:
+    type: File
+    outputSource: msasetminimized/new_msa_obj
+
+steps:
+  msa:
+    run: msa/msa.cwl
+    in:
+      job_config: job_config
+      old_out: old_obj
+    out: [queries_fasta, msa_factories, msa_conf, evalue, minsize, maxsize, minidentity, minidentityhundredth, maxidentity, clusteringthreshold]
+  blast:
+    run: msa/blast.cwl
+    in:
+      evalue: msa/evalue
+      queries_fasta: msa/queries_fasta
+    out: [blast_xmls]
+  blast_ids:
+    run: msa/blast_ids.cwl
+    in:
+      msa_factories: msa/msa_factories
+      blast_xmls: blast/blast_xmls
+    out: [blast_ids, sequences]
+  blast_sequences:
+    run: msa/blast_sequences.cwl
+    in:
+      blast_ids: blast_ids/blast_ids
+    out: [blast_sequences]
+  blast_extract:
+    run: msa/blast_extract.cwl
+    in:
+      blast_seqs: blast_sequences/blast_sequences
+      sequences: blast_ids/sequences
+      factories: msa/msa_factories
+    out: [full_seqs]
+  save_sequences:
+    run: msa/save_sequences.cwl
+    in:
+      factories: msa/msa_factories
+      sequences: blast_ids/sequences
+      prefix: sequences_prefix
+    out: [seqs]
+  usearch1:
+    run: msa/usearch1.cwl
+    in:
+      queries_fasta: msa/queries_fasta
+      full_seqs: blast_extract/full_seqs
+      min_identity: msa/minidentityhundredth
+    out: [usearch1_outs]
+  filteridentity:
+    run: msa/filteridentity.cwl
+    in:
+      sequences: blast_ids/sequences
+      usearch1s: usearch1/usearch1_outs
+      factories: msa/msa_factories
+    out: [sequences]
+  save_sequences_identity_filtered:
+    run: msa/save_sequences.cwl
+    in:
+      factories: msa/msa_factories
+      sequences: filteridentity/sequences
+      prefix: sequences_identity_filter_prefix
+    out: [seqs]
+  usearch2:
+    run: msa/usearch2.cwl
+    in:
+      filtered_seqs: save_sequences_identity_filtered/seqs
+      clusteringthreshold: msa/clusteringthreshold
+    out: [usearch2_outs]
+  filterclustering:
+    run: msa/filterclustering.cwl
+    in:
+      filtered_seqs_objects: filteridentity/sequences
+      usearch2s: usearch2/usearch2_outs
+      factories: msa/msa_factories
+    out: [sequences]
+  save_sequences_clustering_filtered:
+    run: msa/save_sequences.cwl
+    in:
+      factories: msa/msa_factories
+      sequences: filterclustering/sequences
+      prefix: sequences_clustering_filter_prefix
+    out: [seqs]
+  filtercoverage:
+    run: msa/filtercoverage.cwl
+    in:
+      filtered_seqs_objects: filterclustering/sequences
+      factories: msa/msa_factories
+    out: [sequences]
+  save_sequences_coverage_filtered:
+    run: msa/save_sequences.cwl
+    in:
+      factories: msa/msa_factories
+      sequences: filtercoverage/sequences
+      prefix: sequences_coverage_filter_prefix
+    out: [seqs]
+  clustalo:
+    run: msa/clustalo.cwl
+    in:
+      coverage_fasta: save_sequences_coverage_filtered/seqs
+    out: [clustalo_outs]
+  msaparse:
+    run: msa/msaparse.cwl
+    in:
+      msa_objs: clustalo/clustalo_outs
+      old_obj: old_obj
+      factories: msa/msa_factories
+    out: [old_msa_obj]
+  msasetminimized:
+    run: msa/msasetminimized.cwl
+    in:
+      old_msa_obj: msaparse/old_msa_obj
+      new_obj: new_obj
+    out: [new_msa_obj]
