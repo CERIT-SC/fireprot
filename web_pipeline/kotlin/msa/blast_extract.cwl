@@ -28,7 +28,7 @@ arguments:
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
-        FACTORYSTR="factory_\${ID}.obj"; FACTORYFILE="";
+        FACTORYSTR="factory_\${ID}.factory.obj"; FACTORYFILE="";
         for g in $(inputs.factories.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done

@@ -22,7 +22,7 @@ arguments:
     valueFrom: |
       for f in $(inputs.filtered_seqs_objects.map(function(seq){return seq.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
-        FACTORYSTR="factory_\${ID}.obj"; FACTORYFILE="";
+        FACTORYSTR="factory_\${ID}.factory.obj"; FACTORYFILE="";
         for g in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done

@@ -28,7 +28,7 @@ arguments:
         for g in $(inputs.usearch2s.map(function(usearch){return usearch.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$USTR") ] ; then UFILE="\$g" ; fi
         done
-        FACTORYSTR="factory_\${ID}.obj"; FACTORYFILE="";
+        FACTORYSTR="factory_\${ID}.factory.obj"; FACTORYFILE="";
         for g in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done

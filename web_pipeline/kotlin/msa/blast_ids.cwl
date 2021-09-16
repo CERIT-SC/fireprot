@@ -22,7 +22,7 @@ arguments:
     valueFrom: |
       for f in $(inputs.blast_xmls.map(function(query){return query.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
-        FACTSTR="factory_\${ID}.obj"; FACTFILE="";
+        FACTSTR="factory_\${ID}.factory.obj"; FACTFILE="";
         for g in $(inputs.msa_factories.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTSTR") ] ; then FACTFILE="\$g" ; fi
         done
