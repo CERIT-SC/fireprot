@@ -23,7 +23,7 @@ arguments:
   - prefix: -c
     valueFrom: |
       for f in $(inputs.blast_seqs.map(function(query){return query.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\..*\$//"` ;
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
         SEQSTR="sequences_load_blast_\${ID}.obj"; SEQFILE="";
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi

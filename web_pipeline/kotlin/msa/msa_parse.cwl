@@ -24,7 +24,7 @@ arguments:
     valueFrom: |
       cp $(inputs.old_obj.path) old_msa.obj;
       for f in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
-        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\..*\$//"` ;
+        ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
         MSASTR="msa_\${ID}.out"; MSAFILE="";
         for g in $(inputs.msa_objs.map(function(msa){return msa.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$MSASTR") ] ; then MSAFILE="\$g" ; fi
