@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.03
+    dockerPull: cerit.io/loschmidt:v0.05
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -29,7 +29,7 @@ outputs:
   msa_factories:
     type: File[]
     outputBinding:
-      glob: ./*.obj
+      glob: ./*.factory.obj
   msa_conf:
     type: File
     outputBinding:
