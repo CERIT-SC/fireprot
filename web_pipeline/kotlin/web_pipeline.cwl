@@ -116,3 +116,18 @@ steps:
       old_obj: preparation/map_old
       new_obj: preparation/map_new
     out: [msa_queries, msa_factories, msa_conf, blast_xmls, blast_ids_ids, blast_id_sequences, blast_sequences_sequences, blast_full_sequences, blast_saved_sequences, usearch1_objs, filter_identity_sequences, filter_identity_sequences_saved, usearch2_objs, filter_clustering_sequences, filter_clustering_sequences_saved, filter_coverage_seqeunces, filter_coverage_seqeunces_saved, msa_objs, old_msa_obj, new_msa_obj]
+  conservation_analysis:
+    run: conservation_analysis.cwl
+    in:
+      old_obj: msa/old_msa_obj
+      new_obj: msa/new_msa_obj
+      indexes: preparation/map_indexes
+    out: [conservation_new]
+  btc:
+    run: btc.cwl
+    in:
+      job_config: job_config
+      old_obj: msa/old_msa_obj
+      new_obj: conservation_analysis/conservation_new
+      indexes: preparation/map_indexes
+    out: [btc_new]
