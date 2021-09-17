@@ -22,14 +22,14 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-      for f in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
+      for f in $(inputs.sequences_in.map(function(sequence){return sequence.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
         USTR="usearch1_\${ID}.out"; UFILE="";
-        for g in $(inputs.usearch1s.map(function(query){return query.path}).join(" ")) ; do
+        for g in $(inputs.usearch1s.map(function(usearch){return usearch.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$USTR") ] ; then UFILE="\$g" ; fi
         done
         FACTORYSTR="factory_\${ID}.factory.obj"; FACTORYFILE="";
-        for g in $(inputs.factories.map(function(query){return query.path}).join(" ")) ; do
+        for g in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done
         /usr/bin/java -jar /opt/loschmidt/filterByIdentity-1.3.1.0.jar "\$UFILE" "\$FACTORYFILE" "\$f"
