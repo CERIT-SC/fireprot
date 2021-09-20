@@ -66,7 +66,7 @@ steps:
     run: cmanalysis/amic_round3.cwl
     in:
       mis: amic_round1/outputs
-      entfacts: amic_round1/outputs
+      entfacts: amic_round2/outputs
     out: [outputs]
   amic_parser:
     run: cmanalysis/amic_parser.cwl
