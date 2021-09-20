@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/conservationAnalysis-1.3.1.0.j
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.04
+    dockerPull: cerit.io/loschmidt:v0.06
 
 inputs:
   old_obj:

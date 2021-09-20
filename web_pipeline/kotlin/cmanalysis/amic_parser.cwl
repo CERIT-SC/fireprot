@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.05
+    dockerPull: cerit.io/loschmidt:v0.06
 
 inputs:
   old_obj:

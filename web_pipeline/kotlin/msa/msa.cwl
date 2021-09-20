@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.05
+    dockerPull: cerit.io/loschmidt:v0.06
 
 requirements:
   InlineJavascriptRequirement: {}
