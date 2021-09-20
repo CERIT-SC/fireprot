@@ -131,3 +131,11 @@ steps:
       new_obj: conservation_analysis/conservation_new
       indexes: preparation/map_indexes
     out: [btc_new]
+  cmanalysis:
+    run: cmanalysis.cwl
+    in:
+      old_obj: msa/old_msa_obj
+      new_obj: btc/btc_new
+      job_config: job_config
+      indexes: preparation/map_indexes
+    out: [fodors, freecontacts, amic_round1_outputs, amic_round2_outputs, amic_round3_outputs, amic_parser_old, freecontacts_dca, csvs, cma_old, cma_new]
