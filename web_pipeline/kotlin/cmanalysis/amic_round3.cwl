@@ -23,7 +23,7 @@ arguments:
         for g in $(inputs.entfacts.map(function(entfact){return entfact.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\${ID}.out") ] ; then ENTFILE="\$g" ; fi
         done
-        /opt/amic/MI.+res.py -v 3 "\$f" "\$ENTFILE" > "round_3_\${ID}.out" ;
+        /opt/amic/aMIc.+res.py -v 3 "\$f" "\$ENTFILE" > "round_3_\${ID}.out" ;
       done
 
 outputs:
