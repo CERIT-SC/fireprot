@@ -20,7 +20,7 @@ arguments:
       cp $(inputs.old_obj.path) old.obj
       for f in $(inputs.amic_outputs.map(function(output){return output.path}).join(" ")) ; do
         ID=`echo "\$f" | sed "s/.*_//" | sed "s/\\..*\$//"` ;
-        /opt/loschmidt/amicParser-1.3.1.0.jar old.obj "\$f" "\${ID}" ;
+        /usr/bin/java -jar /opt/loschmidt/amicParser-1.3.1.0.jar old.obj "\$f" "\${ID}" ;
       done
 
 outputs:
