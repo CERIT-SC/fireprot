@@ -82,7 +82,7 @@ steps:
   end:
     run: cmanalysis/end.cwl
     in:
-      old_obj: amic_parser/old_obj
+      old_obj: amic_parser/amic_old
       new_obj: new_obj
       job_config: job_config
       indexes: indexes
