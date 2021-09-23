@@ -9,8 +9,13 @@ hints:
   DockerRequirement:
     dockerPull: cerit.io/foldx:latest
   ResourceRequirement:
-    coresMax: 1
-    ramMin: 1024
+    coresMin: 2
+    coresMax: 4
+    ramMin: 2048
+    tmpdirMin: 4096
+    tmpdirMax: 16384
+    outdirMin: 4096
+    outdirMax: 16384
 inputs:
   batches:
     type: File[]
