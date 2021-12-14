@@ -61,4 +61,5 @@ arguments:
 outputs:
   ddg_predictions:
     type: File[]
-    glob: ./output/*out
+    outputBinding:
+      glob: ./output/*out
