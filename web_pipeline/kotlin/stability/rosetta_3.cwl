@@ -28,7 +28,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        apt update && apt install unzip -y
+        apt update && apt install unzip zip -y
         unzip $(inputs.single_mutations_zip.path)
         mkdir output
         ARRAY=(\$(ls single*))
