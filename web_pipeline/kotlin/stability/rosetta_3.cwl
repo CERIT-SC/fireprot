@@ -63,7 +63,7 @@ arguments:
             find . -maxdepth 1 -type f -exec rm "{}" \;
         done
         cd ..
-        while [ \$(ls CPU_* | wc -l) -lt $((CPUCORES - 1)) ] ; do
+        while [ \$(ls CPU_* | wc -l) -lt \$((CPUCORES - 1)) ] ; do
             sleep 0.1
         done
         cd output
