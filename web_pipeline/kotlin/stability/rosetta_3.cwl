@@ -10,9 +10,10 @@ hints:
   DockerRequirement:
     dockerPull: cerit.io/rosetta:latest
   ResourceRequirement:
-    coresMin: 8
-    coresMax: 10
+    coresMin: 20
+    coresMax: 25
     ramMin: 20480
+    ramMax: 80480
     tmpdirMin: 1024
     tmpdirMax: 16384
     outdirMin: 1024
@@ -33,7 +34,7 @@ arguments:
         mkdir output
         ARRAY=(\$(ls single*))
         ARRLEN=\${#ARRAY[@]}
-        CPUCORES=8
+        CPUCORES=20
         INCREASE=\$((ARRLEN / CPUCORES))
         for f in \$(seq 0 \$((CPUCORES - 2))) ; do
             mkdir "worker_\${f}"
