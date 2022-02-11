@@ -45,11 +45,11 @@ arguments:
             done
         done
 outputs:
-  averages:
+  individuals:
     type: File[]
     outputBinding:
       glob: ./*.txt
-  fxouts:
+  averages:
     type: File[]
     outputBinding:
       glob: ./*.fxout
