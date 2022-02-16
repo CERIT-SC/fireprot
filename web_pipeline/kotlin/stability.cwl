@@ -116,3 +116,29 @@ steps:
       job_config: job_config
       pair_type: "energy"
     out: [combined_mutations_obj_zip, combined_mutations_txt_zip, btcmutations, energymutations, new_obj]
+  combine_combined_objects:
+    run: stability/combine_zips.cwl
+    in:
+      zips: [foldx_process/combined_mutations_obj_zip, single_process/combined_mutations_obj_zip, btc_process/combined_mutations_obj_zip, energy_process/combined_mutations_obj_zip]
+    out: [output_zip]
+  combine_combined_text:
+    run: stability/combine_zips.cwl
+    in:
+      zips: [foldx_process/combined_mutations_txt_zip, single_process/combined_mutations_txt_zip, btc_process/combined_mutations_txt_zip, energy_process/combined_mutations_txt_zip]
+    out: [output_zip]
+  combined_rosetta:
+    run: stability/rosetta_3.cwl
+    in:
+      mutations_txt_zip: combine_combined_text/output_zip
+      pdb_file: minimized_pdb
+      cst_file: filter_min_cst
+      prefix: "combined"
+    out: [ddg_predictions_zip]
+  combined_process:
+    run stability/combined_process.cwl
+    in:
+      combined_mutations_zip: combine_combined_objects/output_zip
+      ddg_predictions_zip: combined_rosetta/ddg_predictions_zip
+      new_obj: energy_process/new_obj
+      indexes: indexes
+    out: [new_obj]
