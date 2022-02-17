@@ -10,15 +10,6 @@ requirements:
 hints:
   DockerRequirement:
     dockerPull: cerit.io/rosetta:latest
-  ResourceRequirement:
-    coresMin: 20
-    coresMax: 25
-    ramMin: 20480
-    ramMax: 80480
-    tmpdirMin: 1024
-    tmpdirMax: 16384
-    outdirMin: 1024
-    outdirMax: 16384
 inputs:
   mutations_txt:
     type: File
