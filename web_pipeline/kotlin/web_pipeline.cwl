@@ -103,7 +103,7 @@ outputs:
     outputSource: msa/new_msa_obj
   conservation_new_obj:
     type: File
-    outputSource: conservatin_analysis/conservation_new
+    outputSource: conservation_analysis/conservation_new
   btc_new_obj:
     type: File
     outputSource: btc/btc_new
