@@ -15,6 +15,18 @@ inputs:
     type: File
   filter_min_cst:
     type: File
+  btc_type:
+    type: string
+    default: "btc"
+  energy_type:
+    type: string
+    default: "energy"
+  combined_type:
+    type: string
+    default: "combined"
+  single_type:
+    type: string
+    default: "single"
 outputs:
   stability_new:
     type: File
@@ -80,7 +92,7 @@ steps:
       mutations_txt_zip: foldx_process/single_mutations_txt_zip
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
-      prefix: "single"
+      prefix: single_type
     out: [ddg_predictions_zip]
   single_process:
     run: stability/single_process.cwl
@@ -100,7 +112,7 @@ steps:
       mutations_txt_zip: foldx_process/btc_mutations_txt_zip
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
-      prefix: "btc"
+      prefix: btc_type
     out: [ddg_predictions_zip]
   btc_process:
     run: stability/pair_process.cwl
@@ -112,7 +124,7 @@ steps:
       btcmutations: single_process/btcmutations
       energymutations: single_process/energymutations
       job_config: job_config
-      pair_type: "btc"
+      pair_type: btc_type
     out: [combined_mutations_obj_zip, combined_mutations_txt_zip, btcmutations, energymutations, new_obj]
   energy_rosetta:
     run: stability/rosetta_3.cwl
@@ -120,7 +132,7 @@ steps:
       mutations_txt_zip: foldx_process/energy_mutations_txt_zip
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
-      prefix: "energy"
+      prefix: energy_type
     out: [ddg_predictions_zip]
   energy_process:
     run: stability/pair_process.cwl
@@ -132,7 +144,7 @@ steps:
       btcmutations: btc_process/btcmutations
       energymutations: btc_process/energymutations
       job_config: job_config
-      pair_type: "energy"
+      pair_type: energy_type
     out: [combined_mutations_obj_zip, combined_mutations_txt_zip, btcmutations, energymutations, new_obj]
   combine_combined_objects:
     run: stability/combine_zips.cwl
@@ -150,7 +162,7 @@ steps:
       mutations_txt_zip: combine_combined_text/output_zip
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
-      prefix: "combined"
+      prefix: combined_type
     out: [ddg_predictions_zip]
   combined_process:
     run stability/combined_process.cwl
