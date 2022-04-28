@@ -7,6 +7,9 @@ requirements:
 inputs:
   new_obj:
     type: File
+  commercial_user:
+    type: string
+    default: "false"
   btc_multi_size:
     type: int
   btc_multi_double:
@@ -43,7 +46,7 @@ steps:
     run: output/toxml.cwl
     in:
       new_obj: new_obj
-      commercial_user: "false"
+      commercial_user: commercial_user
       btc_multi_size: btc_multi_size
       btc_multi_double: btc_multi_double
       btc_mutations: btc_mutations
