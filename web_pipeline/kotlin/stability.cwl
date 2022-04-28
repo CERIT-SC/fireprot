@@ -129,7 +129,7 @@ steps:
   energy_rosetta:
     run: stability/rosetta_3.cwl
     in:
-      mutations_txt_zip: foldx_process/energy_mutations_txt_zip
+      mutations_txt_zip: single_process/energy_mutations_txt_zip
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
       prefix: energy_type
@@ -137,7 +137,7 @@ steps:
   energy_process:
     run: stability/pair_process.cwl
     in:
-      pair_mutations_zip: foldx_process/energy_mutations_obj_zip
+      pair_mutations_zip: single_process/energy_mutations_obj_zip
       ddg_predictions_zip: energy_rosetta/ddg_predictions_zip
       new_obj: btc_process/new_obj
       indexes: indexes
