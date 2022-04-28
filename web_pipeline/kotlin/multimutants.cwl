@@ -33,7 +33,7 @@ outputs:
   energy_mut_size:
     type: int
     outputSource: multi_start/energy_mut_size
-  new_obj:
+  multimutants_new:
     type: File
     outputSource: combined_multi_end/new_obj
   btc_ddg_predictions_out:
