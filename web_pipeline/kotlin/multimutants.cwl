@@ -13,6 +13,15 @@ inputs:
     type: File
   filter_min_cst:
     type: File
+  btc_type:
+    type: string
+    default: "btc"
+  energy_type:
+    type: string
+    default: "energy"
+  combined_type:
+    type: string
+    default: "combined"
 
 outputs:
   btc_multi_mut_txt:
@@ -160,7 +169,7 @@ steps:
     in:
       new_obj: multi_start/multi_start_new_obj
       job_config: job_config
-      type: "btc"
+      type: btc_type
       ddg_predictions: rosetta_16_btc/ddg_predictions_out
       size: multi_start/btc_mut_size
       stdout: rosetta_16_btc/stdout
@@ -172,7 +181,7 @@ steps:
     in:
       new_obj: btc_multi_end/new_obj
       job_config: job_config
-      type: "energy"
+      type: energy_type
       ddg_predictions: rosetta_16_energy/ddg_predictions_out
       size: multi_start/energy_mut_size
       stdout: rosetta_16_energy/stdout
@@ -184,7 +193,7 @@ steps:
     in:
       new_obj: energy_multi_end/new_obj
       job_config: job_config
-      type: "combined"
+      type: combined_type
       ddg_predictions: rosetta_16_combined/ddg_predictions_out
       size: multi_start/combined_mut_size
       stdout: rosetta_16_combined/stdout
