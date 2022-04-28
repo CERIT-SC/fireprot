@@ -16,21 +16,39 @@ inputs:
   filter_min_cst:
     type: File
 outputs:
-  foldx_batches:
+  stability_new:
+    type: File
+    outputSource: combined_process/new_obj
+  foldx_individuals:
     type: File[]
-    outputSource: foldx_start/foldx_batches
-  foldx_new_obj:
-    type: File
-    outputSource: foldx_start/foldx_new_obj
-  catalytic_distance:
-    type: File
-    outputSource: foldx_start/catalytic_distance
+    outputSource: foldx_parse/individuals
   foldx_averages:
     type: File[]
     outputSource: foldx_parse/averages
-  foldx_fxouts:
-    type: File[]
-    outputSource: foldx_parse/fxouts
+  btc_mutations_txt_zip:
+    type: File
+    outputSource: foldx_process/btc_mutations_txt_zip
+  energy_mutations_txt_zip:
+    type: File
+    outputSource: single_process/energy_mutations_txt_zip
+  combined_mutations_txt_zip:
+    type: File
+    outputSource: combine_combined_text/output_zip
+  single_mutations_txt_zip:
+    type: File
+    outputSource: foldx_process/single_mutations_txt_zip
+  single_ddg_predictions_zip:
+    type: File
+    outputSource: single_rosetta/ddg_predictions_zip
+  btc_ddg_predictions_zip:
+    type: File
+    outputSource: btc_rosetta/ddg_predictions_zip
+  energy_ddg_predictions_zip:
+    type: File
+    outputSource: energy_rosetta/ddg_predictions_zip
+  combined_ddg_predictions_zip:
+    type: File
+    outputSource: combined_rosetta/ddg_predictions_zip
 
 steps:
   foldx_start:
