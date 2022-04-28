@@ -56,40 +56,40 @@ outputs:
     outputSource: rosetta_16_btc/stderr
   energy_ddg_predictions_out:
     type: File
-    outputSource: rosetta16_energy/ddg_predictions_out
+    outputSource: rosetta_16_energy/ddg_predictions_out
   energy_mutations_pdb_zip:
     type: File
-    outputSource: rosetta16_energy/mutations_pdb_zip
+    outputSource: rosetta_16_energy/mutations_pdb_zip
   energy_repacked_pdb_zip:
     type: File
-    outputSource: rosetta16_energy/repacked_pdb_zip
+    outputSource: rosetta_16_energy/repacked_pdb_zip
   energy_wt_traj:
     type: File
-    outputSource: rosetta16_energy/wt_traj
+    outputSource: rosetta_16_energy/wt_traj
   energy_rosetta_stdout:
     type: File
-    outputSource: rosetta16_energy/stdout
+    outputSource: rosetta_16_energy/stdout
   energy_rosetta_stderr:
     type: File
-    outputSource: rosetta16_energy/stderr
+    outputSource: rosetta_16_energy/stderr
   combined_ddg_predictions_out:
     type: File
-    outputSource: rosetta16_combined/ddg_predictions_out
+    outputSource: rosetta_16_combined/ddg_predictions_out
   combined_mutations_pdb_zip:
     type: File
-    outputSource: rosetta16_combined/mutations_pdb_zip
+    outputSource: rosetta_16_combined/mutations_pdb_zip
   combined_repacked_pdb_zip:
     type: File
-    outputSource: rosetta16_combined/repacked_pdb_zip
+    outputSource: rosetta_16_combined/repacked_pdb_zip
   combined_wt_traj:
     type: File
-    outputSource: rosetta16_combined/wt_traj
+    outputSource: rosetta_16_combined/wt_traj
   combined_rosetta_stdout:
     type: File
-    outputSource: rosetta16_combined/stdout
+    outputSource: rosetta_16_combined/stdout
   combined_rosetta_stderr:
     type: File
-    outputSource: rosetta16_combined/stderr
+    outputSource: rosetta_16_combined/stderr
   btc_best_structure:
     type: string
     outputSource: btc_multi_end/best_structure
