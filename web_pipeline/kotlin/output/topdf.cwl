@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: bash
 hints:
   DockerRequirement:
-    dockerPull: texlive/texlive:latest
+    dockerPull: cerit.io/loschmidt-pdf:v0.01
 inputs:
   output_tex:
     type: File
@@ -13,7 +13,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        /usr/bin/pdftex -interaction=nonstopmode $(inputs.output_tex.path); [ -f output.pdf ]
+        /usr/bin/pdflatex -interaction=nonstopmode $(inputs.output_tex.path)
 
 outputs:
   output_pdf:
