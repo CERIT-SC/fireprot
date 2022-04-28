@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.08
+    dockerPull: cerit.io/loschmidt:v0.10
 inputs:
   batches:
     type: File[]

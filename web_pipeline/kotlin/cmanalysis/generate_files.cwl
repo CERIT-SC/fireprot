@@ -6,7 +6,7 @@ baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/cmanalysis-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.07
+    dockerPull: cerit.io/loschmidt:v0.10
 
 inputs:
   old_obj:
