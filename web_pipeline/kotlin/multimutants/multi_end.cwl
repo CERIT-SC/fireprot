@@ -32,7 +32,7 @@ arguments:
         cp $(inputs.new_obj.path) new.obj && mkdir mutations && cd mutations && unzip $(inputs.mutations_zip.path) && cd .. && /usr/bin/java -jar /opt/loschmidt/multiMutants_process-1.3.1.0.jar new.obj $(inputs.job_config.path) $(inputs.type) $(inputs.ddg_predictions.path) $(inputs.size) $(inputs.stdout.path) $(inputs.minimized_pdb.path) mutations
 
 outputs:
-  new_obj:
+  multi_end_new_obj:
     type: File
     outputBinding:
       glob: new.obj

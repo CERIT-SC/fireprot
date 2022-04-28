@@ -44,7 +44,7 @@ outputs:
     outputSource: multi_start/energy_mut_size
   multimutants_new:
     type: File
-    outputSource: combined_multi_end/new_obj
+    outputSource: combined_multi_end/multi_end_new_obj
   btc_ddg_predictions_out:
     type: File
     outputSource: rosetta_16_btc/ddg_predictions_out
@@ -175,7 +175,7 @@ steps:
       stdout: rosetta_16_btc/stdout
       minimized_pdb: minimized_pdb
       mutations_zip: rosetta_16_btc/mutations_pdb_zip
-    out: [new_obj, best_structure, pdb_update, multi_double, mutations_string]
+    out: [multi_end_new_obj, best_structure, pdb_update, multi_double, mutations_string]
   energy_multi_end:
     run: multimutants/multi_end.cwl
     in:
@@ -187,7 +187,7 @@ steps:
       stdout: rosetta_16_energy/stdout
       minimized_pdb: minimized_pdb
       mutations_zip: rosetta_16_energy/mutations_pdb_zip
-    out: [new_obj, best_structure, pdb_update, multi_double, mutations_string]
+    out: [multi_end_new_obj, best_structure, pdb_update, multi_double, mutations_string]
   combined_multi_end:
     run: multimutants/multi_end.cwl
     in:
@@ -199,4 +199,4 @@ steps:
       stdout: rosetta_16_combined/stdout
       minimized_pdb: minimized_pdb
       mutations_zip: rosetta_16_combined/mutations_pdb_zip
-    out: [new_obj, best_structure, pdb_update, multi_double, mutations_string]
+    out: [multi_end_new_obj, best_structure, pdb_update, multi_double, mutations_string]
