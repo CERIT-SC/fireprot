@@ -77,7 +77,7 @@ steps:
       pdb: minimized_pdb
     out: [individuals, averages]
   foldx_process:
-    run stability/foldx_process.cwl
+    run: stability/foldx_process.cwl
     in:
       batches: foldx_start/foldx_batches
       averages: foldx_parse/averages
@@ -165,7 +165,7 @@ steps:
       prefix: combined_type
     out: [ddg_predictions_zip]
   combined_process:
-    run stability/combined_process.cwl
+    run: stability/combined_process.cwl
     in:
       combined_mutations_zip: combine_combined_objects/output_zip
       ddg_predictions_zip: combined_rosetta/ddg_predictions_zip
