@@ -13,15 +13,6 @@ inputs:
     type: File
   filter_min_cst:
     type: File
-  btc_type:
-    type: string
-    default: "btc"
-  energy_type:
-    type: string
-    default: "energy"
-  combined_type:
-    type: string
-    default: "combined"
 
 outputs:
   btc_multi_mut_txt:
@@ -165,10 +156,11 @@ steps:
       cst_file: filter_min_cst
     out: [ddg_predictions_out, mutations_pdb_zip, repacked_pdb_zip, wt_traj, stdout, stderr]
   btc_multi_end:
+    run: multimutants/multi_end.cwl
     in:
       new_obj: multi_start/multi_start_new_obj
       job_config: job_config
-      type: btc_type
+      type: "btc"
       ddg_predictions: rosetta_16_btc/ddg_predictions_out
       size: multi_start/btc_mut_size
       stdout: rosetta_16_btc/stdout
@@ -176,10 +168,11 @@ steps:
       mutations_zip: rosetta_16_btc/mutations_pdb_zip
     out: [new_obj, best_structure, pdb_update, multi_double, mutations_string]
   energy_multi_end:
+    run: multimutants/multi_end.cwl
     in:
       new_obj: btc_multi_end/new_obj
       job_config: job_config
-      type: energy_type
+      type: "energy"
       ddg_predictions: rosetta_16_energy/ddg_predictions_out
       size: multi_start/energy_mut_size
       stdout: rosetta_16_energy/stdout
@@ -187,10 +180,11 @@ steps:
       mutations_zip: rosetta_16_energy/mutations_pdb_zip
     out: [new_obj, best_structure, pdb_update, multi_double, mutations_string]
   combined_multi_end:
+    run: multimutants/multi_end.cwl
     in:
       new_obj: energy_multi_end/new_obj
       job_config: job_config
-      type: combined_type
+      type: "combined"
       ddg_predictions: rosetta_16_combined/ddg_predictions_out
       size: multi_start/combined_mut_size
       stdout: rosetta_16_combined/stdout
