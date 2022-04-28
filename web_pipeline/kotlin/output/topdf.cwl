@@ -2,15 +2,18 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: [/usr/bin/pdftex, -interaction=nonstopmode]
+baseCommand: bash
 hints:
   DockerRequirement:
     dockerPull: texlive/texlive:latest
 inputs:
   output_tex:
     type: File
-    inputBinding:
-      position: 0
+
+arguments:
+  - prefix: -c
+    valueFrom: |
+        /usr/bin/pdftex -interaction=nonstopmode $(inputs.output_tex.path); [ -f output.pdf ]
 
 outputs:
   output_pdf:
