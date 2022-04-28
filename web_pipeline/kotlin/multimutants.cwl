@@ -179,7 +179,7 @@ steps:
   energy_multi_end:
     run: multimutants/multi_end.cwl
     in:
-      new_obj: btc_multi_end/new_obj
+      new_obj: btc_multi_end/multi_end_new_obj
       job_config: job_config
       type: energy_type
       ddg_predictions: rosetta_16_energy/ddg_predictions_out
@@ -191,7 +191,7 @@ steps:
   combined_multi_end:
     run: multimutants/multi_end.cwl
     in:
-      new_obj: energy_multi_end/new_obj
+      new_obj: energy_multi_end/multi_end_new_obj
       job_config: job_config
       type: combined_type
       ddg_predictions: rosetta_16_combined/ddg_predictions_out
