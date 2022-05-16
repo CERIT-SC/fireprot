@@ -32,7 +32,7 @@ arguments:
         for g in $(inputs.factories.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/extractBlastSequences-1.3.1.0.jar "\$f" "\$FACTORYFILE" "\$SEQFILE" ;
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/extractBlastSequences-1.3.1.0.jar "\$f" "\$FACTORYFILE" "\$SEQFILE" ;
       done
 outputs:
   full_seqs:

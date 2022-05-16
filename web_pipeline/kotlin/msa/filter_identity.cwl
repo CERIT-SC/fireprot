@@ -32,7 +32,7 @@ arguments:
         for g in $(inputs.factories.map(function(factory){return factory.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTORYSTR") ] ; then FACTORYFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/filterByIdentity-1.3.1.0.jar "\$UFILE" "\$FACTORYFILE" "\$f"
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/filterByIdentity-1.3.1.0.jar "\$UFILE" "\$FACTORYFILE" "\$f"
       done
 
 outputs:

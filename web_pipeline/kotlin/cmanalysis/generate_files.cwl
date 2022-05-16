@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: [/usr/bin/java, -jar, /opt/loschmidt/cmanalysis-1.3.1.0.jar]
+baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/cmanalysis-1.3.1.0.jar]
 
 hints:
   DockerRequirement:

@@ -28,7 +28,7 @@ arguments:
         for g in $(inputs.sequences.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$SEQSTR") ] ; then SEQFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/saveSequences-1.3.1.0.jar "\$SEQFILE" "\$f" "$(inputs.prefix)" ;
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/saveSequences-1.3.1.0.jar "\$SEQFILE" "\$f" "$(inputs.prefix)" ;
       done
 outputs:
   seqs:

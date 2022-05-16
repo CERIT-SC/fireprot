@@ -29,7 +29,7 @@ arguments:
         for g in $(inputs.msa_objs.map(function(msa){return msa.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$MSASTR") ] ; then MSAFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/msaParser-1.3.1.0.jar "\$MSAFILE" old_msa.obj "\$f";
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/msaParser-1.3.1.0.jar "\$MSAFILE" old_msa.obj "\$f";
       done
 outputs:
   old_msa_obj:

@@ -26,7 +26,7 @@ arguments:
         for g in $(inputs.msa_factories.map(function(query){return query.path}).join(" ")) ; do
           if [ ! -z \$(echo "\$g" | grep "\$FACTSTR") ] ; then FACTFILE="\$g" ; fi
         done
-        /usr/bin/java -jar /opt/loschmidt/loadBlast-1.3.1.0.jar "\$f" "\$FACTFILE" ;
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/loadBlast-1.3.1.0.jar "\$f" "\$FACTFILE" ;
       done
 outputs:
   blast_ids:
