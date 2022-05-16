@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.10
+    dockerPull: cerit.io/loschmidt:v0.12
 inputs:
   pair_mutations_zip:
     type: File
@@ -35,8 +35,7 @@ arguments:
         cp $(inputs.btcmutations.path) btcmutations_copy.obj;
         cp $(inputs.energymutations.path) energymutations_copy.obj;
 
-        // TODO make sure jar is correct
-        java -jar /opt/loschmidt/stability_pair_process-standalone-1.3.1.0.jar pairs actmut new_copy.obj $(inputs.indexes.path) btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path) $(inputs.pair_type)
+        java -jar /opt/loschmidt/stability_pair_process-1.3.1.0.jar pairs actmut new_copy.obj $(inputs.indexes.path) btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path) $(inputs.pair_type)
 
         rm -Rf pairs; rm -Rf actmut;
 

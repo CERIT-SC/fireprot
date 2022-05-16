@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.10
+    dockerPull: cerit.io/loschmidt:v0.12
 inputs:
   combined_mutations_zip:
     type: File
@@ -25,8 +25,7 @@ arguments:
         mkdir actmut; cd actmut; unzip $(inputs.ddg_predictions_zip); cd ..;
         cp $(inputs.new_obj.path) new_copy.obj;
 
-        // TODO make sure jar is correct
-        java -jar /opt/loschmidt/stability_combinedpairs_process-standalone-1.3.1.0.jar combined actmut new_copy.obj $(inputs.indexes.path)
+        java -jar /opt/loschmidt/stability_combinedpairs_process-1.3.1.0.jar combined actmut new_copy.obj $(inputs.indexes.path)
 
         rm -Rf combined; rm -Rf actmut;
 outputs:

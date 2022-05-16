@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.10
+    dockerPull: cerit.io/loschmidt:v0.12
 inputs:
   batches:
     type: File[]
@@ -34,7 +34,7 @@ arguments:
             for g in $(inputs.individuals.map(function(individual){return individual.path}).join(" ")) ; do
               if [ ! -z \$(echo "\$g" | grep "_\$ID.txt") ] ; then INDIVIDUALFILE="\$g" ; fi
             done
-            java -jar /opt/loschmidt/stability_foldx_process-standalone-1.3.1.0.jar "\$batch" "\$INDIVIDUALFILE" "\$AVGFILE" new_copy.obj mutations.obj btcmutations.obj energymutations.obj $(inputs.job_config.path) $(inputs.indexes.path) "\$ID"
+            java -jar /opt/loschmidt/stability_foldx_process-1.3.1.0.jar "\$batch" "\$INDIVIDUALFILE" "\$AVGFILE" new_copy.obj mutations.obj btcmutations.obj energymutations.obj $(inputs.job_config.path) $(inputs.indexes.path) "\$ID"
         done
         zip btc_obj.zip btc_mutation*.obj
         zip btc_txt.zip btc_mutation*.txt

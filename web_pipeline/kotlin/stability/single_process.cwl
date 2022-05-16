@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.10
+    dockerPull: cerit.io/loschmidt:v0.12
 inputs:
   single_mutations_zip:
     type: File
@@ -36,8 +36,7 @@ arguments:
         cp $(inputs.btcmutations.path) btcmutations_copy.obj;
         cp $(inputs.energymutations.path) energymutations_copy.obj;
 
-        // TODO make sure jar is correct
-        java -jar /opt/loschmidt/stability_single_process-standalone-1.3.1.0.jar mutations actmut new_copy.obj $(inputs.indexes.path)  mutations_copy.obj btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path)
+        java -jar /opt/loschmidt/stability_single_process-1.3.1.0.jar mutations actmut new_copy.obj $(inputs.indexes.path)  mutations_copy.obj btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path)
 
         rm -Rf mutations; rm -Rf actmut;
 
