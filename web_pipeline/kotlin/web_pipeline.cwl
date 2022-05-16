@@ -5,6 +5,7 @@ class: Workflow
 requirements:
     InlineJavascriptRequirement: {}
     SubworkflowFeatureRequirement: {}
+    MultipleInputFeatureRequirement: {}
 inputs:
   pdb:
     type: File

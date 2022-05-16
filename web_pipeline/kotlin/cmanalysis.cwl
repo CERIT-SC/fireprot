@@ -4,6 +4,7 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
     InlineJavascriptRequirement: {}
+    MultipleInputFeatureRequirement: {}
 inputs:
   old_obj:
     type: File
