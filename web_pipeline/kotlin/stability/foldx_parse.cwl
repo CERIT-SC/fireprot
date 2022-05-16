@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/foldx:latest
+    dockerPull: cerit.io/foldx:v0.02
   ResourceRequirement:
     coresMin: 2
     coresMax: 4
