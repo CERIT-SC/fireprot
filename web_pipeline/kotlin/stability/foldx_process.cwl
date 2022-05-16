@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: sh
+baseCommand: bash
 requirements:
     InlineJavascriptRequirement: {}
 hints:

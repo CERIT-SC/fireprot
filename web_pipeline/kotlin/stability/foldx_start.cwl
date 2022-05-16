@@ -26,7 +26,7 @@ outputs:
   foldx_batches:
     type: File[]
     outputBinding:
-      glob: foldx_batch*
+      glob: ./foldx_batch*
   foldx_new_obj:
     type: File
     outputBinding:
