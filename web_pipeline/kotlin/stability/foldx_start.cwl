@@ -3,6 +3,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/stability_foldx-1.3.1.0.jar]
+requirements:
+    InlineJavascriptRequirement: {}
 
 hints:
   DockerRequirement:
