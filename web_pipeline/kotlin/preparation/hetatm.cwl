@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/hetatm-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.12
+    dockerPull: cerit.io/loschmidt:v0.13
 
 inputs:
   pdb_repaired:

@@ -8,7 +8,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.12
+    dockerPull: cerit.io/loschmidt:v0.13
 
 inputs:
   new_obj:
@@ -28,7 +28,7 @@ outputs:
   foldx_batches:
     type: File[]
     outputBinding:
-      glob: fo*.bin
+      glob: ./f*.bin
   foldx_new_obj:
     type: File
     outputBinding:

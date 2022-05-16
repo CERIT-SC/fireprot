@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.12
+    dockerPull: cerit.io/loschmidt:v0.13
 inputs:
   new_obj:
     type: File
@@ -49,13 +49,13 @@ outputs:
   multi_double:
     type: double
     outputBinding:
-      glob: ./multi*.txt
+      glob: ./d*.txt
       loadContents: true
       outputEval: $(self[0].contents)
   mutations_string:
     type: string
     outputBinding:
-      glob: ./mutations*.txt
+      glob: ./m*.txt
       loadContents: true
       outputEval: $(self[0].contents)
 
