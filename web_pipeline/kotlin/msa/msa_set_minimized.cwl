@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/msaSetMinimized-1.3
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.13
+    dockerPull: cerit.io/loschmidt:v0.14
 
 requirements:
   InlineJavascriptRequirement: {}

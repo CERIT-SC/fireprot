@@ -8,7 +8,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.13
+    dockerPull: cerit.io/loschmidt:v0.14
 
 inputs:
   new_obj:
