@@ -7,14 +7,14 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.14
+    dockerPull: cerit.io/fireprot/loschmidt:v0.14
 inputs:
   batches:
     type: File[]
-  averages:
-    type: File[]
-  individuals:
-    type: File[]
+  averages_zip:
+    type: File
+  individuals_zip:
+    type: File
   new:
     type: File
   job_config:
@@ -26,12 +26,8 @@ arguments:
   - prefix: -c
     valueFrom: |
         cp $(inputs.new.path) new_copy.obj;
-        for g in $(inputs.averages.map(function(average){return average.path}).join(" ")) ; do
-          cp "\$g" .
-        done
-        for g in $(inputs.individuals.map(function(individual){return individual.path}).join(" ")) ; do
-          cp "\$g" .
-        done
+        unzip $(inputs.averages_zip.path)
+        unzip $(inputs.individuals_zip.path)
         for f in * ; do if [ ! -f "\$f" ] ; then continue ; fi ; ID=\$(echo "\$f" | sed 's/.*_//' | sed 's/\..*//') ; mkdir "ID_\${ID}"; mv *\${ID}* "ID_\${ID}" ; done;
         for batch in $(inputs.batches.map(function(batch){return batch.path}).join(" ")) ; do
             ID=`echo "\$batch" | sed "s/.*_//" | sed "s/\\..*\$//"`

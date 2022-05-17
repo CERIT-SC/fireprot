@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/alpine-zip:v0.1
+    dockerPull: cerit.io/fireprot/alpine-zip:v0.1
 inputs:
   zips:
     type: File[]

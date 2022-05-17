@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/usearch:v0.2
+    dockerPull: cerit.io/fireprot/usearch:v0.2
 
 inputs:
   queries_fasta:

@@ -32,12 +32,12 @@ outputs:
   stability_new:
     type: File
     outputSource: combined_process/new_obj
-  foldx_individuals:
+  foldx_individuals_zip:
+    type: File
+    outputSource: foldx_parse/individuals_zip
+  foldx_averages_zip:
     type: File[]
-    outputSource: foldx_parse/individuals
-  foldx_averages:
-    type: File[]
-    outputSource: foldx_parse/averages
+    outputSource: foldx_parse/averages_zip
   btc_mutations_txt_zip:
     type: File
     outputSource: foldx_process/btc_mutations_txt_zip
@@ -76,13 +76,13 @@ steps:
     in:
       batches: foldx_start/foldx_batches
       pdb: minimized_pdb
-    out: [individuals, averages]
+    out: [individuals_zip, averages_zip]
   foldx_process:
     run: stability/foldx_process.cwl
     in:
       batches: foldx_start/foldx_batches
-      averages: foldx_parse/averages
-      individuals: foldx_parse/individuals
+      averages_zip: foldx_parse/averages_zip
+      individuals_zip: foldx_parse/individuals_zip
       new: foldx_start/foldx_new_obj
       job_config: job_config
       indexes: indexes

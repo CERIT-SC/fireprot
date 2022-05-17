@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: bash
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt-pdf:v0.01
+    dockerPull: cerit.io/fireprot/loschmidt-pdf:v0.01
 inputs:
   output_tex:
     type: File

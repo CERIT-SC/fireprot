@@ -9,7 +9,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/rosetta:debug
+    dockerPull: cerit.io/fireprot/rosetta:debug
 inputs:
   mutations_txt:
     type: File

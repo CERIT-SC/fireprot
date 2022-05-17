@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/blast:2.8.1-s3.2
+    dockerPull: cerit.io/fireprot/blast:2.8.1-s3.2
 
 inputs:
   evalue:

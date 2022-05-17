@@ -9,7 +9,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/clustal:v0.2
+    dockerPull: cerit.io/fireprot/clustal:v0.2
 
 inputs:
   coverage_fasta:

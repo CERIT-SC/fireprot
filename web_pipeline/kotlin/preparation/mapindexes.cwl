@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/mapindexes-1.3.1.0.
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.14
+    dockerPull: cerit.io/fireprot/loschmidt:v0.14
 
 inputs:
   pdb:

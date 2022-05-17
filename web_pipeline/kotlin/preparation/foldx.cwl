@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: sh
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/foldx:v0.02
+    dockerPull: cerit.io/fireprot/foldx:v0.03
   ResourceRequirement:
     coresMax: 1
     ramMin: 1024

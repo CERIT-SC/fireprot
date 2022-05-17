@@ -8,7 +8,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/rosetta:latest
+    dockerPull: cerit.io/fireprot/rosetta:latest
   ResourceRequirement:
     coresMin: 20
     coresMax: 25

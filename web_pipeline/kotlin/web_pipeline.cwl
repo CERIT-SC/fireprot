@@ -141,12 +141,12 @@ outputs:
   stability_stability_new:
     type: File
     outputSource: stability/stability_new
-  stability_foldx_individuals:
+  stability_foldx_individuals_zip:
     type: File[]
-    outputSource: stability/foldx_individuals
-  stability_foldx_averages:
+    outputSource: stability/foldx_individuals_zip
+  stability_foldx_averages_zip:
     type: File[]
-    outputSource: stability/foldx_averages
+    outputSource: stability/foldx_averages_zip
   stability_btc_mutations_txt_zip:
     type: File
     outputSource: stability/btc_mutations_txt_zip
@@ -297,7 +297,7 @@ steps:
       indexes: preparation/map_indexes
       minimized_pdb: preparation/minimize_renumbered
       filter_min_cst: preparation/filter_min_cst
-    out: [stability_new, foldx_individuals, foldx_averages, btc_mutations_txt_zip, energy_mutations_txt_zip, combined_mutations_txt_zip, single_mutations_txt_zip, single_ddg_predictions_zip, btc_ddg_predictions_zip, energy_ddg_predictions_zip, combined_ddg_predictions_zip]
+    out: [stability_new, foldx_individuals_zip, foldx_averages_zip, btc_mutations_txt_zip, energy_mutations_txt_zip, combined_mutations_txt_zip, single_mutations_txt_zip, single_ddg_predictions_zip, btc_ddg_predictions_zip, energy_ddg_predictions_zip, combined_ddg_predictions_zip]
   multimutants:
     run: multimutants.cwl
     in:

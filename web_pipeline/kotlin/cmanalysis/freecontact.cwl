@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot-freecontact:v0.1
+    dockerPull: cerit.io/fireprot/freecontact:v0.1
 
 inputs:
   alignments:

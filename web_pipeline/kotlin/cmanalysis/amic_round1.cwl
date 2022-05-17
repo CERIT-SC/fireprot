@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot-amic:v0.3
+    dockerPull: cerit.io/fireprot/amic:v0.3
 
 inputs:
   queries:

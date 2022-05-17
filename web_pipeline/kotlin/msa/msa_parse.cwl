@@ -6,7 +6,7 @@ baseCommand: /bin/bash
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/loschmidt:v0.14
+    dockerPull: cerit.io/fireprot/loschmidt:v0.14
 
 requirements:
   InlineJavascriptRequirement: {}
