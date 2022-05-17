@@ -142,10 +142,10 @@ outputs:
     type: File
     outputSource: stability/stability_new
   stability_foldx_individuals_zip:
-    type: File[]
+    type: File
     outputSource: stability/foldx_individuals_zip
   stability_foldx_averages_zip:
-    type: File[]
+    type: File
     outputSource: stability/foldx_averages_zip
   stability_btc_mutations_txt_zip:
     type: File
