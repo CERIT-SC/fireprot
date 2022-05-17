@@ -26,15 +26,16 @@ arguments:
   - prefix: -c
     valueFrom: |
         cp $(inputs.new.path) new_copy.obj;
+        for g in $(inputs.averages.map(function(average){return average.path}).join(" ")) ; do
+          cp "\$g" .
+        done
+        for g in $(inputs.individuals.map(function(individual){return individual.path}).join(" ")) ; do
+          cp "\$g" .
+        done
+        for f in * ; do if [ ! -f "\$f" ] ; then continue ; fi ; ID=\$(echo "\$f" | sed 's/.*_//' | sed 's/\..*//') ; mkdir "ID_\${ID}"; mv *\${ID}* "ID_\${ID}" ; done;
         for batch in $(inputs.batches.map(function(batch){return batch.path}).join(" ")) ; do
             ID=`echo "\$batch" | sed "s/.*_//" | sed "s/\\..*\$//"`
-            for g in $(inputs.averages.map(function(average){return average.path}).join(" ")) ; do
-              if [ ! -z \$(echo "\$g" | grep "_\$ID.fxout") ] ; then AVGFILE="\$g" ; fi
-            done
-            for g in $(inputs.individuals.map(function(individual){return individual.path}).join(" ")) ; do
-              if [ ! -z \$(echo "\$g" | grep "_\$ID.txt") ] ; then INDIVIDUALFILE="\$g" ; fi
-            done
-            java -jar /opt/loschmidt/stability_foldx_process-1.3.1.0.jar "\$batch" "\$INDIVIDUALFILE" "\$AVGFILE" new_copy.obj mutations.obj btcmutations.obj energymutations.obj $(inputs.job_config.path) $(inputs.indexes.path) "\$ID"
+            java -jar /opt/loschmidt/stability_foldx_process-1.3.1.0.jar "\$batch" "ID_\$ID" new_copy.obj mutations.obj btcmutations.obj energymutations.obj $(inputs.job_config.path) $(inputs.indexes.path) "\$ID"
         done
         zip btc_obj.zip btc_mutation*.obj
         zip btc_txt.zip btc_mutation*.txt

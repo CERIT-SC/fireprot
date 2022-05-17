@@ -2,7 +2,7 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: sh
+baseCommand: bash
 requirements:
     InlineJavascriptRequirement: {}
 hints:
@@ -33,14 +33,15 @@ arguments:
 
                 pos=\$(echo \$position | cut -d: -f1)
                 aas=\$(echo \$position | cut -d: -f2)
+                posID=\${pos::-1}
 
                 echo "=> Calculating position \${pos} with AAs \${aas}"
 
                 foldx --command=PssmStability --pdb-dir=/tmp/calc --pdb=input.pdb --rotabaseLocation=/usr/local/bin/rotabase.txt --output-dir="output_\${ID}" --water=CRYSTAL --pH=7 --numberOfRuns=5 --positions=\${pos} --aminoacids=\${aas} > "output_\${ID}/stdout" 2> "output_\${ID}/stderr" || exit \$?
 
-                cp "output_\${ID}/individual_list_0_PSSM.txt" "individual_list_0_PSSM_\${ID}.txt"
+                cp "output_\${ID}/individual_list_0_PSSM.txt" "individual_list_0_PSSM_\${ID}.\${posID}.txt"
                 for f in output_\${ID}/Average_*.fxout ; do
-                  cp "\${f}" \$(echo \$f | sed "s/.fxout/_\${ID}.fxout/" | sed "s/output_\${ID}.//")
+                  cp "\${f}" \$(echo \$f | sed "s/.fxout/_\${ID}.\${posID}.fxout/" | sed "s/output_\${ID}.//")
                 done
             done
         done
