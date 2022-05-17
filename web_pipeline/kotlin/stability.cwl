@@ -36,7 +36,7 @@ outputs:
     type: File
     outputSource: foldx_parse/individuals_zip
   foldx_averages_zip:
-    type: File[]
+    type: File
     outputSource: foldx_parse/averages_zip
   btc_mutations_txt_zip:
     type: File
