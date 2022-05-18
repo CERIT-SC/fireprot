@@ -29,7 +29,7 @@ arguments:
         cp $(inputs.new.path) new_copy.obj;
         unzip $(inputs.averages_zip.path)
         unzip $(inputs.individuals_zip.path)
-        for f in *fxout ; do if [ ! -f "\$f" ] ; then continue ; fi ; ID=\$(echo "\$f" | sed 's/.*_//' | sed 's/\\..*//') ; mkdir "ID_\${ID}"; mv *\${ID}* "ID_\${ID}" ; done;
+        for f in *fxout ; do if [ ! -f "\$f" ] ; then continue ; fi ; ID=\$(echo "\$f" | sed 's/.*_//' | sed 's/\\..*//') ; mkdir "ID_\${ID}"; mv *_\${ID}.* "ID_\${ID}" ; done;
         for batch in $(inputs.batches.map(function(batch){return batch.path}).join(" ")) ; do
             ID=`echo "\$batch" | sed "s/.*_//" | sed "s/\\..*\$//"`
             java -jar /opt/loschmidt/stability_foldx_process-1.3.1.0.jar "\$batch" "ID_\$ID" new_copy.obj mutations.obj btcmutations.obj energymutations.obj $(inputs.job_config.path) $(inputs.indexes.path) "\$ID"
