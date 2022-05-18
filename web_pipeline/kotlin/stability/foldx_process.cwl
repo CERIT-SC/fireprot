@@ -25,6 +25,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
+        set -x
         cp $(inputs.new.path) new_copy.obj;
         unzip $(inputs.averages_zip.path)
         unzip $(inputs.individuals_zip.path)
