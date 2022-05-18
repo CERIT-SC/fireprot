@@ -29,6 +29,12 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
+        touch emptyfile
+        zip combined_obj.zip emptyfile
+        zip combined_txt.zip emptyfile
+        zip -d combined_obj.zip emptyfile
+        zip -d combined_txt.zip emptyfile
+        rm emptyfile
         mkdir pairs; cd pairs; unzip $(inputs.pair_mutations_zip.path); cd ..;
         mkdir actmut; cd actmut; unzip $(inputs.ddg_predictions_zip); cd ..;
         cp $(inputs.new_obj.path) new_copy.obj;
@@ -41,6 +47,7 @@ arguments:
 
         zip combined_obj.zip combined_mutation*.obj
         zip combined_txt.zip combined_mutation*.txt
+        echo "DONE"
 outputs:
   combined_mutations_obj_zip:
     type: File

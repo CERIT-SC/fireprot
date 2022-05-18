@@ -38,6 +38,7 @@ arguments:
         zip -d combined_txt.zip emptyfile
         zip -d single_obj.zip emptyfile
         zip -d single_txt.zip emptyfile
+        rm emptyfile
         cp $(inputs.new.path) new_copy.obj;
         unzip $(inputs.averages_zip.path)
         unzip $(inputs.individuals_zip.path)
