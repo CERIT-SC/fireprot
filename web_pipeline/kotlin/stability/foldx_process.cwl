@@ -25,7 +25,19 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        set -x
+        touch emptyfile
+        zip btc_obj.zip emptyfile
+        zip btc_txt.zip emptyfile
+        zip combined_obj.zip emptyfile
+        zip combined_txt.zip emptyfile
+        zip single_obj.zip emptyfile
+        zip single_txt.zip emptyfile
+        zip -d btc_obj.zip emptyfile
+        zip -d btc_txt.zip emptyfile
+        zip -d combined_obj.zip emptyfile
+        zip -d combined_txt.zip emptyfile
+        zip -d single_obj.zip emptyfile
+        zip -d single_txt.zip emptyfile
         cp $(inputs.new.path) new_copy.obj;
         unzip $(inputs.averages_zip.path)
         unzip $(inputs.individuals_zip.path)
@@ -40,6 +52,7 @@ arguments:
         zip combined_txt.zip combined_mutation*.txt
         zip single_obj.zip single_mutation*.obj
         zip single_txt.zip single_mutation*.txt
+        echo "DONE"
 outputs:
   btc_mutations_obj_zip:
     type: File
