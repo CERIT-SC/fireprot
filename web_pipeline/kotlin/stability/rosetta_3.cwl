@@ -8,7 +8,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/rosetta:latest
+    dockerPull: cerit.io/fireprot/rosetta:zip
   ResourceRequirement:
     coresMin: 20
     coresMax: 25
@@ -32,7 +32,6 @@ arguments:
   - prefix: -c
     valueFrom: |
         set -x
-        apt update && apt install unzip zip -y
         touch emptyfile
         zip ddg_predictions.zip emptyfile
         zip -d ddg_predictions.zip emptyfile
