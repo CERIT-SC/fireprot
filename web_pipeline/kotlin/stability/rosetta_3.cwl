@@ -31,7 +31,6 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        set -x
         touch emptyfile
         zip ddg_predictions.zip emptyfile
         zip -d ddg_predictions.zip emptyfile
