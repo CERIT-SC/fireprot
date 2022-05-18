@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/foldx:v0.03
+    dockerPull: cerit.io/fireprot/foldx:v0.04
   ResourceRequirement:
     coresMin: 2
     coresMax: 4
@@ -32,8 +32,9 @@ arguments:
         ARRLEN=\${#ARRAY[@]}
         CPUCORES=10
         INCREASE=\$((ARRLEN / CPUCORES))
+        INCREASE=\$(echo "\$ARRLEN / \$CPUCORES" | bc -l)
         for f in \$(seq 0 \$((CPUCORES - 2))) ; do
-            for g in \$(seq \$((f*INCREASE)) \$(((f+1) * INCREASE - 1))) ; do
+            for g in \$(seq \$(echo "(\$f * \$INCREASE) / 1" | bc) \$(echo "((\$f+1) * \$INCREASE - 1) / 1" | bc)) ; do
                 positions=\${ARRAY[\$g]}
                 ID=`echo "\$positions" | sed "s/.*_//" | sed "s/\\..*\$//"`
                 mkdir "output_\${ID}"
@@ -49,16 +50,18 @@ arguments:
                     foldx --command=PssmStability --pdb-dir=/tmp/calc --pdb=input.pdb --rotabaseLocation=/usr/local/bin/rotabase.txt --output-dir="output_\${ID}" --water=CRYSTAL --pH=7 --numberOfRuns=5 --positions=\${pos} --aminoacids=\${aas} > "output_\${ID}/stdout" 2> "output_\${ID}/stderr" || exit \$?
 
                     cp "output_\${ID}/individual_list_0_PSSM.txt" "individual_list_0_PSSM_\${ID}.\${posID}.txt"
-                    for f in output_\${ID}/Average_*.fxout ; do
-                      cp "\${f}" \$(echo \$f | sed "s/.fxout/_\${ID}.\${posID}.fxout/" | sed "s/output_\${ID}.//")
+                    for fxout in output_\${ID}/Average_*.fxout ; do
+                      cp "\${fxout}" \$(echo \$fxout | sed "s/.fxout/_\${ID}.\${posID}.fxout/" | sed "s/output_\${ID}.//")
                     done
+                    rm -Rf "output_\${ID}"
+                    mkdir "output_\${ID}"
                 done
-                if [ \$g == \$(((f+1) * INCREASE - 1)) ] ; then
+                if [ \$g == \$(echo "((\$f+1) * \$INCREASE - 1) / 1" | bc) ] ; then
                    echo "DONE" > "CPU_\$f"
                 fi
             done &
         done
-        for g in \$(seq \$(((CPUCORES-1)*INCREASE)) \$((ARRLEN - 1))) ; do
+        for g in \$(seq \$(echo "((\$CPUCORES - 1) * \$INCREASE) / 1" | bc) \$(echo "\$ARRLEN - 1" | bc)) ; do
             positions=\${ARRAY[\$g]}
             ID=`echo "\$positions" | sed "s/.*_//" | sed "s/\\..*\$//"`
             mkdir "output_\${ID}"
@@ -74,9 +77,11 @@ arguments:
                 foldx --command=PssmStability --pdb-dir=/tmp/calc --pdb=input.pdb --rotabaseLocation=/usr/local/bin/rotabase.txt --output-dir="output_\${ID}" --water=CRYSTAL --pH=7 --numberOfRuns=5 --positions=\${pos} --aminoacids=\${aas} > "output_\${ID}/stdout" 2> "output_\${ID}/stderr" || exit \$?
 
                 cp "output_\${ID}/individual_list_0_PSSM.txt" "individual_list_0_PSSM_\${ID}.\${posID}.txt"
-                for f in output_\${ID}/Average_*.fxout ; do
-                  cp "\${f}" \$(echo \$f | sed "s/.fxout/_\${ID}.\${posID}.fxout/" | sed "s/output_\${ID}.//")
+                for fxout in output_\${ID}/Average_*.fxout ; do
+                  cp "\${fxout}" \$(echo \$fxout | sed "s/.fxout/_\${ID}.\${posID}.fxout/" | sed "s/output_\${ID}.//")
                 done
+                rm -Rf "output_\${ID}"
+                mkdir "output_\${ID}"
             done
         done
         while [ \$(ls CPU_* | wc -l) -lt \$((CPUCORES - 1)) ] ; do
