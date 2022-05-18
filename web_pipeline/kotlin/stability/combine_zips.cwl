@@ -14,6 +14,10 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
+        touch emptyfile
+        zip output.zip emptyfile
+        zip -d output.zip emptyfile
+        rm emptyfile
         mkdir zipped ; cd zipped;
         for zip in $(inputs.zips.map(function(zip){return zip.path}).join(" ")) ; do
             unzip "$zip"

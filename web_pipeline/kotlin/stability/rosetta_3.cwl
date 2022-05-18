@@ -32,10 +32,17 @@ arguments:
   - prefix: -c
     valueFrom: |
         apt update && apt install unzip zip -y
+        touch emptyfile
+        zip ddg_predictions.zip emptyfile
+        zip -d ddg_predictions.zip emptyfile
+        rm emptyfile
         unzip $(inputs.mutations_zip.path)
         mkdir output
         ARRAY=(\$(ls $(inputs.prefix)*))
         ARRLEN=\${#ARRAY[@]}
+        if [ \$ARRLEN -lt 1 ] ; then
+            exit 0
+        fi
         CPUCORES=20
         INCREASE=\$((ARRLEN / CPUCORES))
         for f in \$(seq 0 \$((CPUCORES - 2))) ; do
