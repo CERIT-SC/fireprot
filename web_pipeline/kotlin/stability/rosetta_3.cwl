@@ -31,6 +31,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
+        set -x
         apt update && apt install unzip zip -y
         touch emptyfile
         zip ddg_predictions.zip emptyfile
