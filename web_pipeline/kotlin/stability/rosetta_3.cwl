@@ -36,7 +36,7 @@ arguments:
         zip ddg_predictions.zip emptyfile
         zip -d ddg_predictions.zip emptyfile
         rm emptyfile
-        unzip $(inputs.mutations_zip.path)
+        unzip $(inputs.mutations_txt_zip.path)
         mkdir output
         ARRAY=(\$(ls $(inputs.prefix)*))
         ARRLEN=\${#ARRAY[@]}
