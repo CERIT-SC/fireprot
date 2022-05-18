@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.14
+    dockerPull: cerit.io/fireprot/loschmidt:v0.15
 inputs:
   single_mutations_zip:
     type: File

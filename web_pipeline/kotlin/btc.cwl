@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/btc-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.14
+    dockerPull: cerit.io/fireprot/loschmidt:v0.15
 
 inputs:
   job_config:
