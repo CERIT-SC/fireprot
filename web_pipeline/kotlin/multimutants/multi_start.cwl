@@ -2,21 +2,23 @@
 
 cwlVersion: v1.0
 class: CommandLineTool
-baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/multiMutants-1.3.1.0.jar]
+baseCommand: sh
 requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.17
+    dockerPull: cerit.io/fireprot/loschmidt:v0.18
 inputs:
   new_obj:
     type: File
-    inputBinding:
-      position: 0
   job_config:
     type: File
-    inputBinding:
-      position: 1
+
+arguments:
+  - prefix: -c
+    valueFrom: |
+        cp $(inputs.new_obj.path) new_copy.obj
+        /opt/openjdk-18/bin/java -jar /opt/loschmidt/multiMutants-1.3.1.0.jar new_copy.obj $(inputs.job_config.path)
 
 outputs:
   btc_multi_mut_txt:
@@ -52,4 +54,4 @@ outputs:
   multi_start_new_obj:
     type: File
     outputBinding:
-      glob: new.obj
+      glob: new_copy.obj
