@@ -51,7 +51,7 @@ outputs:
     outputBinding:
       glob: ./d*.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseFloat(self[0].contents))
   mutations_string:
     type: string
     outputBinding:

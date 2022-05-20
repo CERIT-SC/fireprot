@@ -38,19 +38,19 @@ outputs:
     outputBinding:
       glob: btc_mutations_size.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseInt(self[0].contents))
   combined_mut_size:
     type: int
     outputBinding:
       glob: combined_mutations_size.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseInt(self[0].contents))
   energy_mut_size:
     type: int
     outputBinding:
       glob: energy_mutations_size.txt
       loadContents: true
-      outputEval: $(self[0].contents)
+      outputEval: $(parseInt(self[0].contents))
   multi_start_new_obj:
     type: File
     outputBinding:
