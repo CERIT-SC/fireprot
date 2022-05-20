@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.15
+    dockerPull: cerit.io/fireprot/loschmidt:v0.19
 inputs:
   new_obj:
     type: File
@@ -29,7 +29,7 @@ inputs:
 arguments:
   - prefix: -c
     valueFrom: |
-        cp $(inputs.new_obj.path) new.obj && mkdir mutations && cd mutations && unzip $(inputs.mutations_zip.path) && cd .. && /opt/openjdk-18/bin/java -jar /opt/loschmidt/multiMutants_process-1.3.1.0.jar new.obj $(inputs.job_config.path) $(inputs.type) $(inputs.ddg_predictions.path) $(inputs.size) $(inputs.stdout.path) $(inputs.minimized_pdb.path) mutations
+        rm -Rf mutations && cp $(inputs.new_obj.path) new.obj && mkdir mutations && cd mutations && unzip $(inputs.mutations_zip.path) && cd .. && /opt/openjdk-18/bin/java -jar /opt/loschmidt/multiMutants_process-1.3.1.0.jar new.obj $(inputs.job_config.path) $(inputs.type) $(inputs.ddg_predictions.path) $(inputs.size) $(inputs.stdout.path) $(inputs.minimized_pdb.path) mutations
 
 outputs:
   multi_end_new_obj:

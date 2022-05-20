@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/conservationAnalysi
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.15
+    dockerPull: cerit.io/fireprot/loschmidt:v0.19
 
 inputs:
   old_obj:
