@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.15
+    dockerPull: cerit.io/fireprot/loschmidt:v0.16
 inputs:
   new_obj:
     type: File
