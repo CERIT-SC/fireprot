@@ -32,12 +32,12 @@ arguments:
         touch emptyfile
         zip combined_obj.zip emptyfile
         zip combined_txt.zip emptyfile
-        zip single_obj.zip emptyfile
-        zip single_txt.zip emptyfile
+        zip energy_obj.zip emptyfile
+        zip energy_txt.zip emptyfile
         zip -d combined_obj.zip emptyfile
         zip -d combined_txt.zip emptyfile
-        zip -d single_obj.zip emptyfile
-        zip -d single_txt.zip emptyfile
+        zip -d energy_obj.zip emptyfile
+        zip -d energy_txt.zip emptyfile
         rm emptyfile
         mkdir mutations; cd mutations; unzip $(inputs.single_mutations_zip.path); cd ..;
         mkdir actmut; cd actmut; unzip $(inputs.ddg_predictions_zip); cd ..;
