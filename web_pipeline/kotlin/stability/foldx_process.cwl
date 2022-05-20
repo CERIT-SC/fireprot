@@ -79,10 +79,6 @@ outputs:
     type: File
     outputBinding:
       glob: single_txt.zip
-  mutations:
-    type: File
-    outputBinding:
-      glob: mutations.obj
   btcmutations:
     type: File
     outputBinding:

@@ -86,7 +86,7 @@ steps:
       new: foldx_start/foldx_new_obj
       job_config: job_config
       indexes: indexes
-    out: [btc_mutations_obj_zip, btc_mutations_txt_zip, combined_mutations_obj_zip, combined_mutations_txt_zip, single_mutations_obj_zip, single_mutations_txt_zip, mutations, btcmutations, energymutations, new_obj]
+    out: [btc_mutations_obj_zip, btc_mutations_txt_zip, combined_mutations_obj_zip, combined_mutations_txt_zip, single_mutations_obj_zip, single_mutations_txt_zip, btcmutations, energymutations, new_obj]
   single_rosetta:
     run: stability/rosetta_3.cwl
     in:
@@ -102,7 +102,6 @@ steps:
       ddg_predictions_zip: single_rosetta/ddg_predictions_zip
       new_obj: foldx_process/new_obj
       indexes: indexes
-      mutations: foldx_process/mutations
       btcmutations: foldx_process/btcmutations
       energymutations: foldx_process/energymutations
       job_config: job_config

@@ -17,8 +17,6 @@ inputs:
     type: File
   indexes:
     type: File
-  mutations:
-    type: File
   btcmutations:
     type: File
   energymutations:
@@ -42,11 +40,10 @@ arguments:
         mkdir mutations; cd mutations; unzip $(inputs.single_mutations_zip.path); cd ..;
         mkdir actmut; cd actmut; unzip $(inputs.ddg_predictions_zip); cd ..;
         cp $(inputs.new_obj.path) new_copy.obj;
-        cp $(inputs.mutations.path) mutations_copy.obj;
         cp $(inputs.btcmutations.path) btcmutations_copy.obj;
         cp $(inputs.energymutations.path) energymutations_copy.obj;
 
-        java -jar /opt/loschmidt/stability_single_process-1.3.1.0.jar mutations actmut new_copy.obj $(inputs.indexes.path)  mutations_copy.obj btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path)
+        java -jar /opt/loschmidt/stability_single_process-1.3.1.0.jar mutations actmut new_copy.obj $(inputs.indexes.path)  mutations.obj btcmutations_copy.obj energymutations_copy.obj $(inputs.job_config.path)
 
         rm -Rf mutations; rm -Rf actmut;
 
