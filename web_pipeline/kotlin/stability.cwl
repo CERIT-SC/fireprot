@@ -105,7 +105,7 @@ steps:
       btcmutations: foldx_process/btcmutations
       energymutations: foldx_process/energymutations
       job_config: job_config
-    out: [energy_mutations_obj_zip, energy_mutations_txt_zip, combined_mutations_obj_zip, combined_mutations_txt_zip, mutations, btcmutations, energymutations, new_obj]
+    out: [energy_mutations_obj_zip, energy_mutations_txt_zip, combined_mutations_obj_zip, combined_mutations_txt_zip, btcmutations, energymutations, new_obj]
   btc_rosetta:
     run: stability/rosetta_3.cwl
     in:

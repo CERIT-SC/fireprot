@@ -69,10 +69,6 @@ outputs:
     type: File
     outputBinding:
       glob: combined_txt.zip
-  mutations:
-    type: File
-    outputBinding:
-      glob: mutations_copy.obj
   btcmutations:
     type: File
     outputBinding:
