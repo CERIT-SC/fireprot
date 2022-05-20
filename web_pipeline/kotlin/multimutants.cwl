@@ -150,6 +150,7 @@ steps:
       mutations_txt: multi_start/btc_multi_mut_txt
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
+      mutations_size: multi_start/btc_mut_size
     out: [ddg_predictions_out, mutations_pdb_zip, repacked_pdb_zip, wt_traj, stdout, stderr]
   rosetta_16_energy:
     run: multimutants/rosetta_16.cwl
@@ -157,6 +158,7 @@ steps:
       mutations_txt: multi_start/energy_multi_mut_txt
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
+      mutations_size: multi_start/energy_mut_size
     out: [ddg_predictions_out, mutations_pdb_zip, repacked_pdb_zip, wt_traj, stdout, stderr]
   rosetta_16_combined:
     run: multimutants/rosetta_16.cwl
@@ -164,6 +166,7 @@ steps:
       mutations_txt: multi_start/combined_multi_mut_txt
       pdb_file: minimized_pdb
       cst_file: filter_min_cst
+      mutations_size: multi_start/combined_mut_size
     out: [ddg_predictions_out, mutations_pdb_zip, repacked_pdb_zip, wt_traj, stdout, stderr]
   btc_multi_end:
     run: multimutants/multi_end.cwl
