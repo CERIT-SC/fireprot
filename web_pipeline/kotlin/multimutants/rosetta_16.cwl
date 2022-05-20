@@ -9,7 +9,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/rosetta:debug
+    dockerPull: cerit.io/fireprot/rosetta:debugzip
 inputs:
   mutations_size:
     type: int
