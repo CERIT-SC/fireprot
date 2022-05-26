@@ -11,6 +11,8 @@ inputs:
     type: File
   job_config:
     type: File
+  config:
+    type: File
 outputs:
   preparation_foldx_repair:
     type: File
@@ -258,6 +260,7 @@ steps:
     run: preparation.cwl
     in:
       pdb: pdb
+      config: config
     out: [foldx_repair, foldx_fxout, hetatm_pdb, renumbered, minimize_rossetta, minimize_renumbered, filter_min_cst, map_indexes, map_old, map_new]
   msa:
     run: msa.cwl

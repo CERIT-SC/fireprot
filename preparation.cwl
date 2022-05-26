@@ -8,6 +8,8 @@ requirements:
 inputs:
   pdb:
     type: File
+  config:
+    type: File
 outputs:
   foldx_repair:
     type: File
@@ -71,5 +73,6 @@ steps:
     in:
       pdb: pdb
       pdb_renumbered: minimize/input_renumbered_out
+      config: config
     out: [indexes_obj, old_obj, new_obj]
 

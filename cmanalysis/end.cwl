@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/cmanalysisEnd-1.3.1
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.19
+    dockerPull: cerit.io/fireprot/loschmidt:v0.21
 
 inputs:
   old_obj:
