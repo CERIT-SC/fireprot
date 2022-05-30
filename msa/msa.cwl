@@ -6,7 +6,7 @@ baseCommand: [/opt/openjdk-18/bin/java, -jar, /opt/loschmidt/msa-1.3.1.0.jar]
 
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.21
+    dockerPull: cerit.io/fireprot/loschmidt:v0.22
 
 requirements:
   InlineJavascriptRequirement: {}

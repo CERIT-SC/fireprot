@@ -7,7 +7,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: cerit.io/fireprot/loschmidt:v0.21
+    dockerPull: cerit.io/fireprot/loschmidt:v0.22
 inputs:
   batches:
     type: File[]
